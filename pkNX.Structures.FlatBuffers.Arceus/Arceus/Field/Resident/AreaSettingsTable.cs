@@ -1,6 +1,5 @@
-using System;
 using System.ComponentModel;
-using System.Linq;
+using System.Text;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ClassNeverInstantiated.Global
@@ -15,11 +14,11 @@ namespace pkNX.Structures.FlatBuffers.Arceus;
 public partial class AreaSettingsTable
 {
     public AreaSettings Find(string name) => Table.First(z => z.Name == name);
-}
+    }
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class AreaSettings
-{
+{    
     // Get the in game name of the area
     public string FriendlyAreaName
     {

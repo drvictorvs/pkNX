@@ -81,7 +81,7 @@ namespace pkNX.WinForms.Subforms
             this.TC_Editor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.TC_Editor.MinimumSize = new System.Drawing.Size(859, 592);
             this.TC_Editor.Name = "TC_Editor";
-            this.TC_Editor.SelectedIndex = 0;
+            this.TC_Editor.SelectedIndex = 4;
             this.TC_Editor.Size = new System.Drawing.Size(1391, 938);
             this.TC_Editor.TabIndex = 2;
             // 
@@ -89,9 +89,10 @@ namespace pkNX.WinForms.Subforms
             // 
             this.Tab_Settings.Controls.Add(this.PG_AreaSettings);
             this.Tab_Settings.Location = new System.Drawing.Point(4, 34);
-            this.Tab_Settings.Name = "Tab_Settings";
-            this.Tab_Settings.Padding = new System.Windows.Forms.Padding(3);
+            this.Tab_Settings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Tab_Settings.Padding = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Settings.Size = new System.Drawing.Size(1383, 900);
+            this.Tab_Settings.Name = "Tab_Settings";
             this.Tab_Settings.TabIndex = 5;
             this.Tab_Settings.Text = "Settings";
             this.Tab_Settings.UseVisualStyleBackColor = true;
@@ -134,7 +135,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Regular.Name = "Tab_Regular";
             this.Tab_Regular.Size = new System.Drawing.Size(1383, 900);
             this.Tab_Regular.TabIndex = 1;
-            this.Tab_Regular.Text = "*Regular";
+            this.Tab_Regular.Text = "Regular";
             this.Tab_Regular.UseVisualStyleBackColor = true;
             // 
             // Edit_RegularSpawners
@@ -156,7 +157,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Wormhole.Name = "Tab_Wormhole";
             this.Tab_Wormhole.Size = new System.Drawing.Size(1383, 900);
             this.Tab_Wormhole.TabIndex = 2;
-            this.Tab_Wormhole.Text = "*Wormhole";
+            this.Tab_Wormhole.Text = "Wormhole";
             this.Tab_Wormhole.UseVisualStyleBackColor = true;
             // 
             // Edit_WormholeSpawners
@@ -178,7 +179,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Landmarks.Name = "Tab_Landmarks";
             this.Tab_Landmarks.Size = new System.Drawing.Size(1383, 900);
             this.Tab_Landmarks.TabIndex = 3;
-            this.Tab_Landmarks.Text = "*Landmarks";
+            this.Tab_Landmarks.Text = "Landmarks";
             this.Tab_Landmarks.UseVisualStyleBackColor = true;
             // 
             // Edit_LandmarkSpawns

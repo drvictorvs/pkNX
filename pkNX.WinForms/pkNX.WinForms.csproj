@@ -13,6 +13,8 @@
     <AssemblyName>pkNX</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>True</UseWPF>
+    <CopyRetryCount>2000</CopyRetryCount>
+    <CopyRetryDelayMilliseconds>1000</CopyRetryDelayMilliseconds>
   </PropertyGroup>
 
   <ItemGroup>

@@ -53,7 +53,9 @@ public partial class PokeDataBattle
             throw new ArgumentOutOfRangeException(nameof(TalentType), TalentType, "No min flawless IVs?");
         if (TalentVnum == 0 && DevId != DevID.DEV_PATIRISU &&
             Level != 35) // nice mistake gamefreak -- 3star Pachirisu is 0 IVs.
+        {
             throw new ArgumentOutOfRangeException(nameof(TalentVnum), TalentVnum, "No min flawless IVs?");
+        }
 
         if (Seikaku != SeikakuType.DEFAULT)
             throw new ArgumentOutOfRangeException(nameof(Seikaku), Seikaku, $"No {nameof(Seikaku)} allowed!");

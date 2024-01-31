@@ -16,7 +16,7 @@ namespace SharpFileSystem.Tests
             {
                 return;
             }
-            Assert.False(true, $"The exception '{typeof(T).FullName}' was not thrown.");
+            Assert.Fail($"The exception '{typeof(T).FullName}' was not thrown.");
         }
     }
 }

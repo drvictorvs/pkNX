@@ -7,10 +7,12 @@ using pkNX.Containers;
 using pkNX.Game;
 using pkNX.Randomization;
 using pkNX.Structures;
+using FlatSharp;
 using pkNX.Structures.FlatBuffers;
 using pkNX.Structures.FlatBuffers.Arceus;
 using static pkNX.Structures.Species;
 using Util = pkNX.Randomization.Util;
+using System.Buffers;
 
 namespace pkNX.WinForms.Subforms;
 
@@ -32,11 +34,14 @@ public partial class AreaEditor8a : Form
 
         Resident = (GFPack)ROM.GetFile(GameFile.Resident);
         var bin_settings = Resident.GetDataFullPath("bin/field/resident/AreaSettings.bin");
+        var path = "bin/field/resident/AreaSettings.bin";
+        var index = Resident.GetIndexFull(path);
+        var hash = FnvHash.HashFnv1a_64(path);
         Settings = FlatBufferConverter.DeserializeFrom<AreaSettingsTable>(bin_settings);
 
         AreaNames = Settings.Table.Select(z => z.Name).ToArray();
 
-        const string startingArea = "ha_area01";
+        const string startingArea = "ha_area00";
         (AreaIndex, Area) = LoadAreaByName(startingArea);
 
         InitializeComponent();
@@ -96,7 +101,7 @@ public partial class AreaEditor8a : Form
         }
 
         settings.Legends = false; // Legendary encounter slot conditions require you to not have captured the Legendary in order to encounter them; ban altogether.
-        rand.Initialize(settings, banned.ToArray());
+        rand.Initialize(settings, [.. banned]);
 
         var formRand = pt.Table.Cast<IPersonalMisc_SWSH>()
             .Where(z => z.IsPresentInGame && !(Legal.BattleExclusiveForms.Contains(z.DexIndexNational) || Legal.BattleFusions.Contains(z.DexIndexNational)))
@@ -163,9 +168,38 @@ public partial class AreaEditor8a : Form
 
     private void AreaEditor8a_FormClosing(object sender, FormClosingEventArgs e)
     {
-        if (Save)
+        if (Save){
             SaveArea();
-        else
+            SaveSettings();
+        }
+        else {
             Resident.CancelEdits();
+        }
+    }
+
+    private void SaveSettings()
+    {
+        TryWrite("bin/field/resident/AreaSettings.bin", Settings);
+    }
+
+    private static byte[] Write<T>(T obj) where T : class, IFlatBufferSerializable<T>
+    {
+        var pool = ArrayPool<byte>.Shared;
+        var serializer = obj.Serializer;
+        var data = pool.Rent(serializer.GetMaxSize(obj));
+        var len = serializer.Write(data, obj);
+        var result = data.AsSpan(0, len).ToArray();
+        pool.Return(data);
+        return result;
+    }
+
+    private void TryWrite<T>(string path, T obj) where T : class, IFlatBufferSerializable<T>
+    {
+        var index = Resident.GetIndexFull(path);
+        if (index == -1)
+            return;
+
+        byte[] result = Write(obj);
+        Resident[index] = result;
     }
 }

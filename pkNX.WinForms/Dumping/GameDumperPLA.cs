@@ -18,17 +18,15 @@ using Species = pkNX.Structures.Species;
 
 namespace pkNX.WinForms;
 
-public class GameDumperPLA
+public class GameDumperPLA(GameManagerPLA rom)
 {
-    private readonly GameManagerPLA ROM;
-    public GameDumperPLA(GameManagerPLA rom) => ROM = rom;
+    private readonly GameManagerPLA ROM = rom;
+
     public string DumpFolder
     {
         get
         {
-            var parent = Directory.GetParent(ROM.PathRomFS);
-            if (parent is null)
-                throw new DirectoryNotFoundException($"Unable to find parent directory of {ROM.PathRomFS}");
+            var parent = Directory.GetParent(ROM.PathRomFS) ?? throw new DirectoryNotFoundException($"Unable to find parent directory of {ROM.PathRomFS}");
             return Path.Combine(parent.FullName, "Dump");
         }
     }
@@ -37,9 +35,7 @@ public class GameDumperPLA
     {
         Directory.CreateDirectory(DumpFolder);
         var result = Path.Combine(DumpFolder, path);
-        var parent = Directory.GetParent(result);
-        if (parent is null)
-            throw new DirectoryNotFoundException($"Unable to get parent directory of {result}");
+        var parent = Directory.GetParent(result) ?? throw new DirectoryNotFoundException($"Unable to get parent directory of {result}");
         Directory.CreateDirectory(parent.FullName); // double check :(
         return result;
     }
@@ -48,9 +44,7 @@ public class GameDumperPLA
     {
         Directory.CreateDirectory(DumpFolder);
         var result = Path.Combine(DumpFolder, parent, path);
-        var parent2 = Directory.GetParent(result);
-        if (parent2 is null)
-            throw new DirectoryNotFoundException($"Unable to get parent directory of {result}");
+        var parent2 = Directory.GetParent(result) ?? throw new DirectoryNotFoundException($"Unable to get parent directory of {result}");
         Directory.CreateDirectory(parent2.FullName); // double check :(
         return result;
     }
@@ -115,7 +109,7 @@ public class GameDumperPLA
 
     private void DumpMoveUsers(IPersonalTable pt, Learnset lr)
     {
-        List<string> Users = new();
+        List<string> Users = [];
         var moves = ROM.GetStrings(TextName.MoveNames);
         var spec = ROM.GetStrings(TextName.SpeciesNames);
         var shop = Legal.MoveShop8_LA;
@@ -128,7 +122,7 @@ public class GameDumperPLA
             var filtered = learn.Where(z => ((IPersonalInfoPLA)pt.GetFormEntry(z.Species, (byte)z.Form)).IsPresentInGame);
             var result = filtered.Select(x => GetSpeciesMove(spec, x, move)).ToArray();
 
-            List<string> r = new() { $"{moves[move]}:" };
+            List<string> r = [$"{moves[move]}:"];
             if (isShop)
             {
                 var species = pt.Table.OfType<IPersonalInfoPLA>().Where(z => z.SpecialTutors[shopIndex] && z.IsPresentInGame);
@@ -152,7 +146,7 @@ public class GameDumperPLA
         return $"{spec[x.Species]}{(x.Form == 0 ? "" : $"-{x.Form}")} @ {level}";
     }
 
-    private static readonly string[] ahtbext = { ".tbl", ".hsh" };
+    private static readonly string[] ahtbext = [".tbl", ".hsh"];
 
     public void DumpAHTB()
     {
@@ -304,7 +298,7 @@ public class GameDumperPLA
         var result = new byte[pt.Table.Length][];
         var mastery = new byte[pt.Table.Length][];
         for (int i = 0; i < result.Length; i++)
-            result[i] = mastery[i] = Array.Empty<byte>();
+            result[i] = mastery[i] = [];
 
         var Dupes = new List<(int Species, int Form)>();
         foreach (var e in obj.Table)
@@ -349,7 +343,7 @@ public class GameDumperPLA
         var pt = new PersonalTable8LA(ROM.GetFile(GameFile.PersonalStats));
         var result = new byte[pt.Table.Length][];
         for (int i = 0; i < result.Length; i++)
-            result[i] = Array.Empty<byte>();
+            result[i] = [];
 
         foreach (var e in obj.Table)
         {
@@ -535,9 +529,7 @@ public class GameDumperPLA
                     var data = resident.GetDataFullPath(s);
                     var file = s.Replace('/', '\\');
                     var dest = Path.Combine(dir, file);
-                    var folder = Path.GetDirectoryName(dest);
-                    if (folder is null)
-                        throw new Exception($"Unable to get directory name of {dest}");
+                    var folder = Path.GetDirectoryName(dest) ?? throw new Exception($"Unable to get directory name of {dest}");
 
                     Directory.CreateDirectory(folder);
                     File.WriteAllBytes(dest, data);
@@ -613,7 +605,7 @@ public class GameDumperPLA
                 }
 
                 // Debug for Visualization
-                if (new[] { "ha_area01", "ha_area02", "ha_area03", "ha_area04", "ha_area05" }.Contains(areaName))
+                if (sourceArray.Contains(areaName))
                     DumpVisualizationData(area);
             }
         }
@@ -639,7 +631,7 @@ public class GameDumperPLA
         return map;
     }
 
-    private static IReadOnlyList<string> GetLocationBoundLines(string areaName,
+    private static List<string> GetLocationBoundLines(string areaName,
         IReadOnlyDictionary<string, (string Name, int Index)> map,
         IEnumerable<PlacementLocation> locations)
     {
@@ -657,7 +649,7 @@ public class GameDumperPLA
         return result;
     }
 
-    private static IReadOnlyList<string> GetSpawnLines(string areaName,
+    private static List<string> GetSpawnLines(string areaName,
         IReadOnlyDictionary<string, (string Name, int Index)> map,
         IEnumerable<PlacementSpawner> spawners,
         IList<PlacementLocation> locations)
@@ -671,7 +663,7 @@ public class GameDumperPLA
         return result;
     }
 
-    private static IReadOnlyList<string> GetMikarugeLines(string areaName,
+    private static List<string> GetMikarugeLines(string areaName,
         IReadOnlyDictionary<string, (string Name, int Index)> map,
         IEnumerable<PlacementMkrgEntry> mkrgs,
         IList<PlacementLocation> locations)
@@ -685,7 +677,7 @@ public class GameDumperPLA
         return result;
     }
 
-    private static IReadOnlyList<string> GetSearchItemLines(string areaName,
+    private static List<string> GetSearchItemLines(string areaName,
         IReadOnlyDictionary<string, (string Name, int Index)> map,
         IEnumerable<PlacementSearchItem> mkrgs,
         IList<PlacementLocation> locations)
@@ -766,6 +758,7 @@ public class GameDumperPLA
         File.WriteAllLines(GetPath(folder, $"Vis_{area.AreaName}.txt"), vis_lines);
     }
 
+    [Obsolete]
     public void DumpOutbreak()
     {
         var file = ROM.GetFile(GameFile.Outbreak).FilePath;
@@ -799,7 +792,7 @@ public class GameDumperPLA
         var pt = new PersonalTable8LA(ROM.GetFile(GameFile.PersonalStats));
         var result = new byte[pt.Table.Max(p => p.DexIndexRegional)][];
         for (int i = 0; i < result.Length; i++)
-            result[i] = Array.Empty<byte>();
+            result[i] = [];
 
         ushort GetDexIndex(ushort species)
         {
@@ -970,10 +963,10 @@ public class GameDumperPLA
         File.WriteAllLines(p3, l3);
     }
 
-    private static readonly string[] LanguageCodes = { "ja", "en", "fr", "it", "de", "es", "ko", "zh", "zh2" };
+    private static readonly string[] LanguageCodes = ["ja", "en", "fr", "it", "de", "es", "ko", "zh", "zh2"];
 
     private static readonly string[] LanguageNames =
-    {
+    [
         "カタカナ",
         "漢字",
         "English",
@@ -984,7 +977,8 @@ public class GameDumperPLA
         "한국",
         "汉字简化方案",
         "漢字簡化方案",
-    };
+    ];
+    private static readonly string[] sourceArray = ["ha_area01", "ha_area02", "ha_area03", "ha_area04", "ha_area05"];
 
     private void ChangeLanguage(int index)
     {

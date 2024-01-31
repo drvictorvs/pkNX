@@ -36,10 +36,8 @@ public class PokemonModelArchive
     public PokemonModelArchive(GFPack sourceArchive)
     {
         SourceArchive = sourceArchive;
-
-        string FileName = Path.GetFileNameWithoutExtension(sourceArchive.FilePath);
-        int SpeciesId = int.Parse(FileName.Substring(2, 4));
-
+        string? FileName = Path.GetFileNameWithoutExtension(sourceArchive.FilePath);
+        int? SpeciesId = int.Parse(FileName?.Substring(2, 4) ?? "0");
         string BasePath = $"bin/pokemon/pm{SpeciesId:0000}/{FileName}/";
         string ModelPath = BasePath + "mdl/";
         string AnimationsPath = BasePath + "anm/";
@@ -62,7 +60,7 @@ public class PokemonModelArchive
         MeshMaterials = TRMMT.Material.Select(
             x => new MeshMaterialWrapper
             {
-                Name = x.Name,
+                Name = x.Name ?? "0",
                 Materials = x.FileNames.Select(
                     fileName => FlatBufferConverter.DeserializeFrom<Material>(SourceArchive.GetDataFullPath(ModelPath + $"{fileName}"))
                 ).ToArray()

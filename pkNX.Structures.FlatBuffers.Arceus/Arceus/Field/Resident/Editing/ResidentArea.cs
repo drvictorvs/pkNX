@@ -1,20 +1,14 @@
 using System.Buffers;
+using System.Diagnostics;
 using FlatSharp;
 using pkNX.Containers;
 
 namespace pkNX.Structures.FlatBuffers.Arceus;
 
 // Not a FlatBuffer; wraps the fields into a single object.
-public sealed class ResidentArea
+public sealed class ResidentArea(GFPack resident, AreaSettings settings)
 {
-    public readonly AreaSettings Settings;
-    private readonly GFPack Resident;
-
-    public ResidentArea(GFPack resident, AreaSettings settings)
-    {
-        Resident = resident;
-        Settings = settings;
-    }
+    public AreaSettings Settings = settings;
 
     public string AreaName => Settings.Name;
     public string FriendlyAreaName => Settings.FriendlyAreaName;
@@ -34,11 +28,11 @@ public sealed class ResidentArea
 
     private T TryRead<T>(string path) where T : class, IFlatBufferSerializable<T>
     {
-        var index = Resident.GetIndexFull(path);
+        var index = resident.GetIndexFull(path);
         if (index == -1)
             throw new ArgumentOutOfRangeException(nameof(path));
 
-        var data = Resident[index];
+        var data = resident[index];
         return T.GreedyMutableSerializer.Parse(data);
     }
 
@@ -55,38 +49,47 @@ public sealed class ResidentArea
 
     private void TryWrite<T>(string path, T obj) where T : class, IFlatBufferSerializable<T>
     {
-        var index = Resident.GetIndexFull(path);
+        var index = resident.GetIndexFull(path);
         if (index == -1)
             return;
 
         byte[] result = Write(obj);
-        Resident[index] = result;
+        resident[index] = result;
     }
 
     public void LoadInfo()
     {
         // Load encount
-        Encounters = TryRead<EncounterDataArchive      >(Settings.Encounters);
-        Locations  = TryRead<PlacementLocationArchive  >(Settings.Locations);
-        Spawners   = TryRead<PlacementSpawnerArchive   >(Settings.Spawners);
-        Wormholes  = TryRead<PlacementSpawnerArchive   >(Settings.WormholeSpawners);
-        LandItems  = TryRead<LandmarkItemSpawnTable    >(Settings.LandmarkItemSpawns);
-        LandMarks  = TryRead<LandmarkItemTable         >(Settings.LandmarkItems);
-        Unown      = TryRead<PlacementUnnnTable        >(Settings.UnownSpawners);
-        Mikaruge   = TryRead<PlacementMkrgTable        >(Settings.Mkrg);
-        SearchItem = TryRead<PlacementSearchItemTable  >(Settings.SearchItem);
+        Encounters   = TryRead<EncounterDataArchive      >(Settings.Encounters);
+        Locations    = TryRead<PlacementLocationArchive  >(Settings.Locations);
+        Spawners     = TryRead<PlacementSpawnerArchive   >(Settings.Spawners);
+        Wormholes    = TryRead<PlacementSpawnerArchive   >(Settings.WormholeSpawners);
+        LandItems    = TryRead<LandmarkItemSpawnTable    >(Settings.LandmarkItemSpawns);
+        LandMarks    = TryRead<LandmarkItemTable         >(Settings.LandmarkItems);
+        Unown        = TryRead<PlacementUnnnTable        >(Settings.UnownSpawners);
+        Mikaruge     = TryRead<PlacementMkrgTable        >(Settings.Mkrg);
+        SearchItem   = TryRead<PlacementSearchItemTable  >(Settings.SearchItem);
     }
     
     public void SaveInfo()
     {
+        Debug.WriteLine($"Writing {Encounters} to {Settings.Encounters}");
         TryWrite(Settings.Encounters, Encounters);
+        Debug.WriteLine($"Writing {Locations} to {Settings.Locations}");
         TryWrite(Settings.Locations, Locations);
+        Debug.WriteLine($"Writing {Spawners} to {Settings.Spawners}");
         TryWrite(Settings.Spawners, Spawners);
+        Debug.WriteLine($"Writing {Wormholes} to {Settings.WormholeSpawners}");
         TryWrite(Settings.WormholeSpawners, Wormholes);
+        Debug.WriteLine($"Writing {LandItems} to {Settings.LandmarkItemSpawns}");
         TryWrite(Settings.LandmarkItemSpawns, LandItems);
+        Debug.WriteLine($"Writing {LandMarks} to {Settings.LandmarkItems}");
         TryWrite(Settings.LandmarkItems, LandMarks);
+        Debug.WriteLine($"Writing {Unown} to {Settings.UnownSpawners}");
         TryWrite(Settings.UnownSpawners, Unown);
+        Debug.WriteLine($"Writing {Mikaruge} to {Settings.Mkrg}");
         TryWrite(Settings.Mkrg, Mikaruge);
+        Debug.WriteLine($"Writing {SearchItem} to {Settings.SearchItem}");
         TryWrite(Settings.SearchItem, SearchItem);
     }
 }
