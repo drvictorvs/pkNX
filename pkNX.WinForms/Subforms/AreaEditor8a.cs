@@ -76,6 +76,17 @@ public partial class AreaEditor8a : Form
         System.Media.SystemSounds.Asterisk.Play();
     }
 
+    private void B_AllowRiding_Click(object sender, EventArgs e)
+    {
+        for(int i = 0; i < AreaNames.Length; i++){
+            SaveArea();
+            (AreaIndex, Area) = LoadAreaByName(AreaNames[i]);
+            LoadArea();
+            Area.Settings.Flag03 = true;
+        }
+        System.Media.SystemSounds.Asterisk.Play();
+    }
+
     private void RandomizeArea(ResidentArea area, SpeciesSettings settings)
     {
         var pt = ROM.Data.PersonalData;
@@ -142,10 +153,12 @@ public partial class AreaEditor8a : Form
     {
         Debug.WriteLine($"Loading Area {AreaIndex}");
         PG_AreaSettings.SelectedObject = Area.Settings;
+        try {
         Edit_Encounters.LoadTable(Area.Encounters.Table, Area.Settings.Encounters);
         Edit_RegularSpawners.LoadTable(Area.Spawners.Table, Area.Settings.Spawners);
         Edit_WormholeSpawners.LoadTable(Area.Wormholes.Table, Area.Settings.WormholeSpawners);
         Edit_LandmarkSpawns.LoadTable(Area.LandItems.Table, Area.Settings.LandmarkItemSpawns);
+        } catch { Edit_Encounters.Visible = Edit_RegularSpawners.Visible = Edit_WormholeSpawners.Visible = Edit_LandmarkSpawns.Visible = false; }
     }
 
     private void SaveArea()

@@ -32,6 +32,7 @@ namespace pkNX.WinForms.Subforms
             this.CB_Area = new System.Windows.Forms.ComboBox();
             this.TC_Editor = new System.Windows.Forms.TabControl();
             this.Tab_Settings = new System.Windows.Forms.TabPage();
+            this.B_AllowRiding = new System.Windows.Forms.Button();
             this.PG_AreaSettings = new System.Windows.Forms.PropertyGrid();
             this.Tab_Encounters = new System.Windows.Forms.TabPage();
             this.Edit_Encounters = new pkNX.WinForms.Controls.EncounterTableEditor8a();
@@ -81,28 +82,42 @@ namespace pkNX.WinForms.Subforms
             this.TC_Editor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.TC_Editor.MinimumSize = new System.Drawing.Size(859, 592);
             this.TC_Editor.Name = "TC_Editor";
-            this.TC_Editor.SelectedIndex = 4;
+            this.TC_Editor.SelectedIndex = 0;
             this.TC_Editor.Size = new System.Drawing.Size(1391, 938);
-            this.TC_Editor.TabIndex = 2;
+            this.TC_Editor.TabIndex = 1;
             // 
             // Tab_Settings
             // 
+            this.Tab_Settings.Controls.Add(this.B_AllowRiding);
             this.Tab_Settings.Controls.Add(this.PG_AreaSettings);
             this.Tab_Settings.Location = new System.Drawing.Point(4, 34);
             this.Tab_Settings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Tab_Settings.Name = "Tab_Settings";
             this.Tab_Settings.Padding = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Settings.Size = new System.Drawing.Size(1383, 900);
-            this.Tab_Settings.Name = "Tab_Settings";
             this.Tab_Settings.TabIndex = 0;
             this.Tab_Settings.Text = "Settings";
             this.Tab_Settings.UseVisualStyleBackColor = true;
             // 
+            // B_AllowRiding
+            // 
+            this.B_AllowRiding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.B_AllowRiding.Location = new System.Drawing.Point(969, 6);
+            this.B_AllowRiding.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.B_AllowRiding.Name = "B_AllowRiding";
+            this.B_AllowRiding.Size = new System.Drawing.Size(354, 44);
+            this.B_AllowRiding.TabIndex = 6;
+            this.B_AllowRiding.Text = "Allow Riding Anywhere";
+            this.B_AllowRiding.UseVisualStyleBackColor = true;
+            this.B_AllowRiding.Click += new System.EventHandler(this.B_AllowRiding_Click);
+            // 
             // PG_AreaSettings
             // 
             this.PG_AreaSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PG_AreaSettings.Location = new System.Drawing.Point(3, 3);
+            this.PG_AreaSettings.Location = new System.Drawing.Point(4, 6);
+            this.PG_AreaSettings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.PG_AreaSettings.Name = "PG_AreaSettings";
-            this.PG_AreaSettings.Size = new System.Drawing.Size(1377, 894);
+            this.PG_AreaSettings.Size = new System.Drawing.Size(1375, 888);
             this.PG_AreaSettings.TabIndex = 0;
             // 
             // Tab_Encounters
@@ -147,7 +162,7 @@ namespace pkNX.WinForms.Subforms
             this.Edit_RegularSpawners.Name = "Edit_RegularSpawners";
             this.Edit_RegularSpawners.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Edit_RegularSpawners.Size = new System.Drawing.Size(1383, 900);
-            this.Edit_RegularSpawners.TabIndex = 2
+            this.Edit_RegularSpawners.TabIndex = 2;
             // 
             // Tab_Wormhole
             // 
@@ -178,7 +193,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Landmarks.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Landmarks.Name = "Tab_Landmarks";
             this.Tab_Landmarks.Size = new System.Drawing.Size(1383, 900);
-            this.Tab_Landmarks.TabIndex = ;
+            this.Tab_Landmarks.TabIndex = 4;
             this.Tab_Landmarks.Text = "Landmarks";
             this.Tab_Landmarks.UseVisualStyleBackColor = true;
             // 
@@ -225,7 +240,7 @@ namespace pkNX.WinForms.Subforms
             this.PG_RandSettings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.PG_RandSettings.Name = "PG_RandSettings";
             this.PG_RandSettings.Size = new System.Drawing.Size(1375, 888);
-            this.PG_RandSettings.TabIndex = 6
+            this.PG_RandSettings.TabIndex = 6;
             // 
             // B_Save
             // 
@@ -268,6 +283,7 @@ namespace pkNX.WinForms.Subforms
         private System.Windows.Forms.ComboBox CB_Area;
         private System.Windows.Forms.TabControl TC_Editor;
         private System.Windows.Forms.TabPage Tab_Settings;
+        private System.Windows.Forms.Button B_AllowRiding;
         private System.Windows.Forms.PropertyGrid PG_AreaSettings;
         private System.Windows.Forms.TabPage Tab_Encounters;
         private System.Windows.Forms.TabPage Tab_Regular;

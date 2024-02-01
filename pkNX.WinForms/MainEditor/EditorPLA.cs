@@ -699,21 +699,21 @@ internal class EditorPLA : EditorBase
     #endregion
 
     #region Rides Editors
-    [EditorCallable(EditorCategory.Rides)] public void EditRideBasuraoCollisionConfig() => PopFlatConfig(GameFile.RideBasuraoCollisionConfig, "Ride Basurao Collision Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideBasuraoConfig() => PopFlatConfig(GameFile.RideBasuraoConfig, "Ride Basurao Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideBasculegionCollisionConfig() => PopFlatConfig(GameFile.RideBasculegionCollisionConfig, "Ride Basculegion Collision Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideBasculegionConfig() => PopFlatConfig(GameFile.RideBasculegionConfig, "Ride Basculegion Config");
     [EditorCallable(EditorCategory.Rides)] public void EditRideChangeConfig() => PopFlatConfig(GameFile.RideChangeConfig, "Ride Change Config");
     [EditorCallable(EditorCategory.Rides)] public void EditRideCommonConfig() => PopFlatConfig(GameFile.RideCommonConfig, "Ride Common Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideNyuuraCollisionConfig() => PopFlatConfig(GameFile.RideNyuuraCollisionConfig, "Ride Sneasler Collision Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideNyuuraConfig() => PopFlatConfig(GameFile.RideNyuuraConfig, "Ride Sneasler Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideNyuuraControllerConfig() => PopFlatConfig(GameFile.RideNyuuraControllerConfig, "Ride Sneasler Controller Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideOdoshishiCollisionConfig() => PopFlatConfig(GameFile.RideOdoshishiCollisionConfig, "Ride Wyrdeer Collision Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideOdoshishiConfig() => PopFlatConfig(GameFile.RideOdoshishiConfig, "Ride Wyrdeer Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideRingumaCollisionConfig() => PopFlatConfig(GameFile.RideRingumaCollisionConfig, "Ride Ursaring Collision Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideRingumaConfig() => PopFlatConfig(GameFile.RideRingumaConfig, "Ride Ursaring Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideRingumaControllerConfig() => PopFlatConfig(GameFile.RideRingumaControllerConfig, "Ride Ursaring Controller Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideWhooguruCollisionConfig() => PopFlatConfig(GameFile.RideWhooguruCollisionConfig, "Ride Braviary Collision Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideWhooguruConfig() => PopFlatConfig(GameFile.RideWhooguruConfig, "Ride Braviary Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideWhooguruControllerConfig() => PopFlatConfig(GameFile.RideWhooguruControllerConfig, "Ride Braviary Controller Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideSneaslerCollisionConfig() => PopFlatConfig(GameFile.RideSneaslerCollisionConfig, "Ride Sneasler Collision Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideSneaslerConfig() => PopFlatConfig(GameFile.RideSneaslerConfig, "Ride Sneasler Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideSneaslerControllerConfig() => PopFlatConfig(GameFile.RideSneaslerControllerConfig, "Ride Sneasler Controller Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideWyrdeerCollisionConfig() => PopFlatConfig(GameFile.RideWyrdeerCollisionConfig, "Ride Wyrdeer Collision Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideWyrdeerConfig() => PopFlatConfig(GameFile.RideWyrdeerConfig, "Ride Wyrdeer Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideUrsaringCollisionConfig() => PopFlatConfig(GameFile.RideUrsaringCollisionConfig, "Ride Ursaring Collision Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideUrsaringConfig() => PopFlatConfig(GameFile.RideUrsaringConfig, "Ride Ursaring Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideUrsaringControllerConfig() => PopFlatConfig(GameFile.RideUrsaringControllerConfig, "Ride Ursaring Controller Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideBraviaryCollisionConfig() => PopFlatConfig(GameFile.RideBraviaryCollisionConfig, "Ride Braviary Collision Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideBraviaryConfig() => PopFlatConfig(GameFile.RideBraviaryConfig, "Ride Braviary Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideBraviaryControllerConfig() => PopFlatConfig(GameFile.RideBraviaryControllerConfig, "Ride Braviary Controller Config");
 
     #endregion
 
