@@ -6,10 +6,10 @@ using pkNX.Containers;
 namespace pkNX.Structures.FlatBuffers.Arceus;
 
 // Not a FlatBuffer; wraps the fields into a single object.
-public sealed class ResidentArea(GFPack resident, AreaSettings settings)
+public sealed class ResidentArea(GFPack resident, AreaSettings settings, AreaSettingsTable? table = null)
 {
     public AreaSettings Settings = settings;
-
+    public AreaSettingsTable? Table = table;
     public string AreaName => Settings.Name;
     public string FriendlyAreaName => Settings.FriendlyAreaName;
 
@@ -91,5 +91,9 @@ public sealed class ResidentArea(GFPack resident, AreaSettings settings)
         TryWrite(Settings.Mkrg, Mikaruge);
         Debug.WriteLine($"Writing {SearchItem} to {Settings.SearchItem}");
         TryWrite(Settings.SearchItem, SearchItem);
+        if(Table != null){
+            Debug.WriteLine($"Writing {Table} to {Settings.SearchItem}");
+            TryWrite("bin/field/resident/AreaSettings.bin", Table);
+        }
     }
 }

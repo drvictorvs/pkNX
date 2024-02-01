@@ -7,7 +7,6 @@ using pkNX.Containers;
 using pkNX.Game;
 using pkNX.Randomization;
 using pkNX.Structures;
-using FlatSharp;
 using pkNX.Structures.FlatBuffers;
 using pkNX.Structures.FlatBuffers.Arceus;
 using static pkNX.Structures.Species;
@@ -34,9 +33,6 @@ public partial class AreaEditor8a : Form
 
         Resident = (GFPack)ROM.GetFile(GameFile.Resident);
         var bin_settings = Resident.GetDataFullPath("bin/field/resident/AreaSettings.bin");
-        var path = "bin/field/resident/AreaSettings.bin";
-        var index = Resident.GetIndexFull(path);
-        var hash = FnvHash.HashFnv1a_64(path);
         Settings = FlatBufferConverter.DeserializeFrom<AreaSettingsTable>(bin_settings);
 
         AreaNames = Settings.Table.Select(z => z.Name).ToArray();
@@ -58,7 +54,7 @@ public partial class AreaEditor8a : Form
     private (int index, ResidentArea area) LoadAreaByName(string name)
     {
         var index = Array.IndexOf(AreaNames, name);
-        var area = new ResidentArea(Resident, Settings.Find(name));
+        var area = new ResidentArea(Resident, Settings.Find(name), Settings);
         area.LoadInfo();
         return (index, area);
     }
@@ -170,36 +166,9 @@ public partial class AreaEditor8a : Form
     {
         if (Save){
             SaveArea();
-            SaveSettings();
         }
         else {
             Resident.CancelEdits();
         }
-    }
-
-    private void SaveSettings()
-    {
-        TryWrite("bin/field/resident/AreaSettings.bin", Settings);
-    }
-
-    private static byte[] Write<T>(T obj) where T : class, IFlatBufferSerializable<T>
-    {
-        var pool = ArrayPool<byte>.Shared;
-        var serializer = obj.Serializer;
-        var data = pool.Rent(serializer.GetMaxSize(obj));
-        var len = serializer.Write(data, obj);
-        var result = data.AsSpan(0, len).ToArray();
-        pool.Return(data);
-        return result;
-    }
-
-    private void TryWrite<T>(string path, T obj) where T : class, IFlatBufferSerializable<T>
-    {
-        var index = Resident.GetIndexFull(path);
-        if (index == -1)
-            return;
-
-        byte[] result = Write(obj);
-        Resident[index] = result;
     }
 }

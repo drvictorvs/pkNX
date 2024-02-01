@@ -703,17 +703,17 @@ internal class EditorPLA : EditorBase
     [EditorCallable(EditorCategory.Rides)] public void EditRideBasuraoConfig() => PopFlatConfig(GameFile.RideBasuraoConfig, "Ride Basurao Config");
     [EditorCallable(EditorCategory.Rides)] public void EditRideChangeConfig() => PopFlatConfig(GameFile.RideChangeConfig, "Ride Change Config");
     [EditorCallable(EditorCategory.Rides)] public void EditRideCommonConfig() => PopFlatConfig(GameFile.RideCommonConfig, "Ride Common Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideNyuuraCollisionConfig() => PopFlatConfig(GameFile.RideNyuuraCollisionConfig, "Ride Nyuura Collision Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideNyuuraConfig() => PopFlatConfig(GameFile.RideNyuuraConfig, "Ride Nyuura Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideNyuuraControllerConfig() => PopFlatConfig(GameFile.RideNyuuraControllerConfig, "Ride Nyuura Controller Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideOdoshishiCollisionConfig() => PopFlatConfig(GameFile.RideOdoshishiCollisionConfig, "Ride Odoshishi Collision Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideOdoshishiConfig() => PopFlatConfig(GameFile.RideOdoshishiConfig, "Ride Odoshishi Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideRingumaCollisionConfig() => PopFlatConfig(GameFile.RideRingumaCollisionConfig, "Ride Ringuma Collision Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideRingumaConfig() => PopFlatConfig(GameFile.RideRingumaConfig, "Ride Ringuma Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideRingumaControllerConfig() => PopFlatConfig(GameFile.RideRingumaControllerConfig, "Ride Ringuma Controller Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideWhooguruCollisionConfig() => PopFlatConfig(GameFile.RideWhooguruCollisionConfig, "Ride Whooguru Collision Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideWhooguruConfig() => PopFlatConfig(GameFile.RideWhooguruConfig, "Ride Whooguru Config");
-    [EditorCallable(EditorCategory.Rides)] public void EditRideWhooguruControllerConfig() => PopFlatConfig(GameFile.RideWhooguruControllerConfig, "Ride Whooguru Controller Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideNyuuraCollisionConfig() => PopFlatConfig(GameFile.RideNyuuraCollisionConfig, "Ride Sneasler Collision Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideNyuuraConfig() => PopFlatConfig(GameFile.RideNyuuraConfig, "Ride Sneasler Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideNyuuraControllerConfig() => PopFlatConfig(GameFile.RideNyuuraControllerConfig, "Ride Sneasler Controller Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideOdoshishiCollisionConfig() => PopFlatConfig(GameFile.RideOdoshishiCollisionConfig, "Ride Wyrdeer Collision Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideOdoshishiConfig() => PopFlatConfig(GameFile.RideOdoshishiConfig, "Ride Wyrdeer Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideRingumaCollisionConfig() => PopFlatConfig(GameFile.RideRingumaCollisionConfig, "Ride Ursaring Collision Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideRingumaConfig() => PopFlatConfig(GameFile.RideRingumaConfig, "Ride Ursaring Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideRingumaControllerConfig() => PopFlatConfig(GameFile.RideRingumaControllerConfig, "Ride Ursaring Controller Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideWhooguruCollisionConfig() => PopFlatConfig(GameFile.RideWhooguruCollisionConfig, "Ride Braviary Collision Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideWhooguruConfig() => PopFlatConfig(GameFile.RideWhooguruConfig, "Ride Braviary Config");
+    [EditorCallable(EditorCategory.Rides)] public void EditRideWhooguruControllerConfig() => PopFlatConfig(GameFile.RideWhooguruControllerConfig, "Ride Braviary Controller Config");
 
     #endregion
 

@@ -71,11 +71,11 @@ namespace pkNX.WinForms.Subforms
             this.TC_Editor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TC_Editor.Controls.Add(this.Tab_Settings);
             this.TC_Editor.Controls.Add(this.Tab_Encounters);
             this.TC_Editor.Controls.Add(this.Tab_Regular);
             this.TC_Editor.Controls.Add(this.Tab_Wormhole);
             this.TC_Editor.Controls.Add(this.Tab_Landmarks);
-            this.TC_Editor.Controls.Add(this.Tab_Settings);
             this.TC_Editor.Controls.Add(this.Tab_Randomize);
             this.TC_Editor.Location = new System.Drawing.Point(14, 75);
             this.TC_Editor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -93,7 +93,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Settings.Padding = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Settings.Size = new System.Drawing.Size(1383, 900);
             this.Tab_Settings.Name = "Tab_Settings";
-            this.Tab_Settings.TabIndex = 5;
+            this.Tab_Settings.TabIndex = 0;
             this.Tab_Settings.Text = "Settings";
             this.Tab_Settings.UseVisualStyleBackColor = true;
             // 
@@ -103,7 +103,7 @@ namespace pkNX.WinForms.Subforms
             this.PG_AreaSettings.Location = new System.Drawing.Point(3, 3);
             this.PG_AreaSettings.Name = "PG_AreaSettings";
             this.PG_AreaSettings.Size = new System.Drawing.Size(1377, 894);
-            this.PG_AreaSettings.TabIndex = 4;
+            this.PG_AreaSettings.TabIndex = 0;
             // 
             // Tab_Encounters
             // 
@@ -112,7 +112,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Encounters.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Encounters.Name = "Tab_Encounters";
             this.Tab_Encounters.Size = new System.Drawing.Size(1383, 900);
-            this.Tab_Encounters.TabIndex = 0;
+            this.Tab_Encounters.TabIndex = 1;
             this.Tab_Encounters.Text = "Encounters";
             this.Tab_Encounters.UseVisualStyleBackColor = true;
             // 
@@ -125,7 +125,7 @@ namespace pkNX.WinForms.Subforms
             this.Edit_Encounters.Name = "Edit_Encounters";
             this.Edit_Encounters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Edit_Encounters.Size = new System.Drawing.Size(1383, 900);
-            this.Edit_Encounters.TabIndex = 0;
+            this.Edit_Encounters.TabIndex = 1;
             // 
             // Tab_Regular
             // 
@@ -134,7 +134,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Regular.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Regular.Name = "Tab_Regular";
             this.Tab_Regular.Size = new System.Drawing.Size(1383, 900);
-            this.Tab_Regular.TabIndex = 1;
+            this.Tab_Regular.TabIndex = 2;
             this.Tab_Regular.Text = "Regular";
             this.Tab_Regular.UseVisualStyleBackColor = true;
             // 
@@ -147,7 +147,7 @@ namespace pkNX.WinForms.Subforms
             this.Edit_RegularSpawners.Name = "Edit_RegularSpawners";
             this.Edit_RegularSpawners.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Edit_RegularSpawners.Size = new System.Drawing.Size(1383, 900);
-            this.Edit_RegularSpawners.TabIndex = 1;
+            this.Edit_RegularSpawners.TabIndex = 2
             // 
             // Tab_Wormhole
             // 
@@ -156,7 +156,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Wormhole.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Wormhole.Name = "Tab_Wormhole";
             this.Tab_Wormhole.Size = new System.Drawing.Size(1383, 900);
-            this.Tab_Wormhole.TabIndex = 2;
+            this.Tab_Wormhole.TabIndex = 3;
             this.Tab_Wormhole.Text = "Wormhole";
             this.Tab_Wormhole.UseVisualStyleBackColor = true;
             // 
@@ -169,7 +169,7 @@ namespace pkNX.WinForms.Subforms
             this.Edit_WormholeSpawners.Name = "Edit_WormholeSpawners";
             this.Edit_WormholeSpawners.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Edit_WormholeSpawners.Size = new System.Drawing.Size(1383, 900);
-            this.Edit_WormholeSpawners.TabIndex = 2;
+            this.Edit_WormholeSpawners.TabIndex = 3;
             // 
             // Tab_Landmarks
             // 
@@ -178,7 +178,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Landmarks.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Landmarks.Name = "Tab_Landmarks";
             this.Tab_Landmarks.Size = new System.Drawing.Size(1383, 900);
-            this.Tab_Landmarks.TabIndex = 3;
+            this.Tab_Landmarks.TabIndex = ;
             this.Tab_Landmarks.Text = "Landmarks";
             this.Tab_Landmarks.UseVisualStyleBackColor = true;
             // 
@@ -191,7 +191,7 @@ namespace pkNX.WinForms.Subforms
             this.Edit_LandmarkSpawns.Name = "Edit_LandmarkSpawns";
             this.Edit_LandmarkSpawns.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Edit_LandmarkSpawns.Size = new System.Drawing.Size(1383, 900);
-            this.Edit_LandmarkSpawns.TabIndex = 0;
+            this.Edit_LandmarkSpawns.TabIndex = 4;
             // 
             // Tab_Randomize
             // 
@@ -202,7 +202,7 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Randomize.Name = "Tab_Randomize";
             this.Tab_Randomize.Padding = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Randomize.Size = new System.Drawing.Size(1383, 900);
-            this.Tab_Randomize.TabIndex = 4;
+            this.Tab_Randomize.TabIndex = 5;
             this.Tab_Randomize.Text = "Randomize";
             this.Tab_Randomize.UseVisualStyleBackColor = true;
             // 
@@ -213,7 +213,7 @@ namespace pkNX.WinForms.Subforms
             this.B_Randomize.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.B_Randomize.Name = "B_Randomize";
             this.B_Randomize.Size = new System.Drawing.Size(404, 44);
-            this.B_Randomize.TabIndex = 5;
+            this.B_Randomize.TabIndex = 6;
             this.B_Randomize.Text = "Randomize Current Map Encounters";
             this.B_Randomize.UseVisualStyleBackColor = true;
             this.B_Randomize.Click += new System.EventHandler(this.B_Randomize_Click);
@@ -225,7 +225,7 @@ namespace pkNX.WinForms.Subforms
             this.PG_RandSettings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.PG_RandSettings.Name = "PG_RandSettings";
             this.PG_RandSettings.Size = new System.Drawing.Size(1375, 888);
-            this.PG_RandSettings.TabIndex = 0;
+            this.PG_RandSettings.TabIndex = 6
             // 
             // B_Save
             // 
@@ -234,7 +234,7 @@ namespace pkNX.WinForms.Subforms
             this.B_Save.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.B_Save.Name = "B_Save";
             this.B_Save.Size = new System.Drawing.Size(124, 44);
-            this.B_Save.TabIndex = 3;
+            this.B_Save.TabIndex = 7;
             this.B_Save.Text = "Save All";
             this.B_Save.UseVisualStyleBackColor = true;
             this.B_Save.Click += new System.EventHandler(this.B_Save_Click);
@@ -267,6 +267,8 @@ namespace pkNX.WinForms.Subforms
         #endregion
         private System.Windows.Forms.ComboBox CB_Area;
         private System.Windows.Forms.TabControl TC_Editor;
+        private System.Windows.Forms.TabPage Tab_Settings;
+        private System.Windows.Forms.PropertyGrid PG_AreaSettings;
         private System.Windows.Forms.TabPage Tab_Encounters;
         private System.Windows.Forms.TabPage Tab_Regular;
         private System.Windows.Forms.TabPage Tab_Wormhole;
@@ -279,7 +281,5 @@ namespace pkNX.WinForms.Subforms
         private System.Windows.Forms.PropertyGrid PG_RandSettings;
         private Controls.LandmarkEditor8a Edit_LandmarkSpawns;
         private System.Windows.Forms.Button B_Randomize;
-        private System.Windows.Forms.TabPage Tab_Settings;
-        private System.Windows.Forms.PropertyGrid PG_AreaSettings;
     }
 }
