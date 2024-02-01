@@ -46,7 +46,7 @@
             this.Grid.Location = new System.Drawing.Point(0, 15);
             this.Grid.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Grid.Name = "Grid";
-            this.Grid.Size = new System.Drawing.Size(1043, 1229);
+            this.Grid.Size = new System.Drawing.Size(1043, 1019);
             this.Grid.TabIndex = 0;
             // 
             // B_Save
