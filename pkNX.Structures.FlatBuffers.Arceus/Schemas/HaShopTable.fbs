@@ -30,7 +30,7 @@ enum UnlockTypes : ulong {
 }
 
 table HaShopItem {
-    ShopID:[ShopNames];
+    ShopName:[ShopNames];
     UnlockType:[UnlockTypes];
     ItemID:int;
 }
