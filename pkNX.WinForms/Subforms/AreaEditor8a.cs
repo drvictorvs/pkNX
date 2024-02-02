@@ -82,7 +82,7 @@ public partial class AreaEditor8a : Form
             SaveArea();
             (AreaIndex, Area) = LoadAreaByName(AreaNames[i]);
             LoadArea();
-            Area.Settings.Flag03 = true;
+            Area.Settings.CanRide = true;
         }
         System.Media.SystemSounds.Asterisk.Play();
     }

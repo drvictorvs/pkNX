@@ -7,7 +7,7 @@ table AreaSettings {
     Name: string (required);
     NameParent: string (required);
     Position: Vec3f (required);
-    Flag03: bool;
+    CanRide: bool;
     Flag04: bool;
     Flag05: bool;
     Flag06: bool;

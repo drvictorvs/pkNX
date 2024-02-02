@@ -14,7 +14,7 @@ namespace pkNX.Structures.FlatBuffers.SWSH
         int IMove.Power { get => Power ; set => Power = (byte)value; }
         int IMove.Accuracy { get => Accuracy ; set => Accuracy = (byte)value; }
         int IMove.PP { get => PP ; set => PP = (byte)value; }
-        int IMove.Priority { get => Priority; set => Priority= (sbyte)value; }
+        int IMove.Priority { get => Priority; set => Priority = (sbyte)value; }
         int IMove.HitMin { get => HitMin; set => HitMin = (byte)value; }
         int IMove.HitMax { get => HitMax; set => HitMax = (byte)value; }
         int IMove.Inflict { get => Inflict; set => Inflict = (byte)value; }

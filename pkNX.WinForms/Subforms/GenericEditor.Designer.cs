@@ -1,4 +1,4 @@
-﻿namespace pkNX.WinForms
+namespace pkNX.WinForms
 {
     partial class GenericEditor<T>
     {
@@ -36,7 +36,6 @@
             this.B_AddEntry = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
             // 
             // Grid
             // 
