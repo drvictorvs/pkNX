@@ -495,7 +495,7 @@ internal class EditorPLA : EditorBase
     public void EditHaShopData()
     {
         var names = ROM.GetStrings(TextName.ItemNames);
-        PopFlat<HaShopTable, HaShopItem>(GameFile.HaShop, "ha_shop_data Editor", z => z.Table, (z, _) => names[z.ItemID], Randomize);
+        PopFlat<HaShopTable, HaShopItem>(GameFile.HaShop, "ha_shop_data Editor", z => z.Table, (z, _) => $"{names[z.ItemID]} - {z.ShopNames}", Randomize);
 
         static void Randomize(IEnumerable<HaShopItem> arr)
         {

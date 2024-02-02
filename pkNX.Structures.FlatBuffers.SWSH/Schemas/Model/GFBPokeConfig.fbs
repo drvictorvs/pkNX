@@ -452,7 +452,7 @@ enum SpeciesModel : ushort
     Model_Bisharp,
     Model_Bouffalant,
     Model_Rufflet,
-    Model_Braviary,
+    Model_whooguru,
     Model_Vullaby,
     Model_Mandibuzz,
     Model_Heatmor,

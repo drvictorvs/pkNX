@@ -1,9 +1,37 @@
 namespace pkNX.Structures.FlatBuffers.Arceus;
 attribute "fs_serializer";
 
+enum ShopNames : ulong {
+    TradingPost = 12889863259937035968,
+    GeneralStore = 1485065383676092082,
+    CandyStand = 14966484889824347679,
+    CraftworksMaterials = 70893176039964643,
+    CraftworksRecipes = 70894275551592854,
+    GinkgoTuli = 10279459806995166307,
+    GinkgoVolo = 9683444162114212644,
+}
+
+enum UnlockTypes : ulong {
+    BasicStore = 11057303190708820123,
+    Request23 = 17686696629637635748,
+    Request43 = 17686697729149263959,
+    ExpCandyM = 9752225586435434032,
+    ExpCandyL = 9752226685947062243,
+    ExpCandyXL = 9752232183505203298,
+    Request61 = 17686694430614379326,
+    Request71 = 17686695530126007537,
+    Crafting1 = 16740009049443555436, // Tumblestones, Dazzling Honey, Caster Fern, Fine Remedy, Dire Hit
+    Crafting2 = 16740010148955183647, // Iron Chunk, Hearty Grains, Sootfoot Root, Superb Remedy, Full Heal, Star Piece
+    Crafting3 = 16740006850420299014, // Plump Beans, Pod Rod
+    Crafting4 = 16740007949931927225, // Crunchy Salt
+    Mission11 = 8007747354157104042, // Razz, Sitrus
+    Mission8 = 8007740757087334776, // Pecha, Hopo
+    Mission10 = 8007741856598962987, // Rawst, Aspear, Pinap
+}
+
 table HaShopItem {
-    Field_00:ulong;
-    Field_01:ulong;
+    ShopID:[ShopNames];
+    UnlockType:[UnlockTypes];
     ItemID:int;
 }
 
