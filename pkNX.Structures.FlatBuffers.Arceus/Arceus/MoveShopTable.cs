@@ -11,7 +11,15 @@ using System.ComponentModel;
 namespace pkNX.Structures.FlatBuffers.Arceus;
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
-public partial class MoveShopTable { }
+public partial class MoveShopTable {
+    public MoveShopIndex AddEntry()
+    {
+        var entry = new MoveShopIndex();
+
+        Table = Table.Append(entry).ToList();
+        return entry;
+    }
+}
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class MoveShopIndex { }

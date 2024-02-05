@@ -123,7 +123,7 @@ public partial class WPFTextEditor
 
     private bool ImportTextFiles(string fileName)
     {
-        bool ValidateSeparatorIndex(int nextSeparator, int lineNumber, ReadOnlySpan<char> line)
+        static bool ValidateSeparatorIndex(int nextSeparator, int lineNumber, ReadOnlySpan<char> line)
         {
             if (nextSeparator != -1)
                 return true;

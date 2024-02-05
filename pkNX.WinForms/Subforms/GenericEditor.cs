@@ -26,6 +26,12 @@ public sealed partial class GenericEditor<T> : Form where T : class
         Cache = loadCache(this);
         Names = Cache.LoadAll().Select(nameSelector).ToArray();
 
+        for (int i = 0; i < Names.Length; i++)
+        {
+            // append the index to each item using the string interpolation
+            Names[i] = $"{Names[i]} [{i}]";
+        }
+
         CB_EntryName.Items.AddRange(Names);
         CB_EntryName.SelectedIndex = 0;
 

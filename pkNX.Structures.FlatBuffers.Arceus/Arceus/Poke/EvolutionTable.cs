@@ -10,7 +10,15 @@ using System.ComponentModel;
 namespace pkNX.Structures.FlatBuffers.Arceus;
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
-public partial class EvolutionTable { }
+public partial class EvolutionTable {
+    public EvolutionSet AddEntry()
+    {
+        var entry = new EvolutionSet();
+
+        Table = Table.Append(entry).ToList();
+        return entry;
+    }
+ }
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class EvolutionEntry { }

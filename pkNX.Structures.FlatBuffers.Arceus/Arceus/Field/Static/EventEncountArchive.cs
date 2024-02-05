@@ -14,7 +14,25 @@ namespace pkNX.Structures.FlatBuffers.Arceus;
 public partial class EventEncount { }
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
-public partial class EventEncountArchive { }
+public partial class EventEncountArchive {
+    public EventEncount AddEntry()
+    {
+        var entry = new EventEncount() {
+            EncounterName = "",
+            Field01 = "",
+            Table = new List<EventEncountPoke> { 
+                new() {
+                Field13 = "", 
+                Field14 = "", 
+                Field15 = "", 
+                }
+            }
+        };
+
+        Table = Table.Append(entry).ToList();
+        return entry;
+    }
+}
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class EventEncountPoke

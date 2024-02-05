@@ -11,7 +11,15 @@ using System.ComponentModel;
 namespace pkNX.Structures.FlatBuffers.Arceus;
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
-public partial class HaShopTable { }
+public partial class HaShopTable {
+    public HaShopItem AddEntry()
+    {
+        var entry = new HaShopItem();
+
+        Table = Table.Append(entry).ToList();
+        return entry;
+    }  
+ }
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class HaShopItem { }

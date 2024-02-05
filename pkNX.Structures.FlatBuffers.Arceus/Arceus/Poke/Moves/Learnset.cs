@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ClassNeverInstantiated.Global
@@ -12,7 +13,18 @@ using System.IO;
 namespace pkNX.Structures.FlatBuffers.Arceus;
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
-public partial class Learnset { }
+public partial class Learnset {
+    public LearnsetMeta AddEntry()
+    {
+        var entry = new LearnsetMeta(){
+            Mainline = new List<LearnsetEntry> { new() },
+            Arceus = new List<LearnsetEntry> { new() }
+        };
+
+        Table = Table.Append(entry).ToList();
+        return entry;
+    }
+ }
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class LearnsetEntry { }
