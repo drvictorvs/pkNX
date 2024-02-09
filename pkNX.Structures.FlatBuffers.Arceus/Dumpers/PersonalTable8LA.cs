@@ -1,8 +1,8 @@
 using System.Collections;
-using pkNX.Containers;
-using System.Diagnostics;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using FlatSharp;
+using pkNX.Containers;
 
 namespace pkNX.Structures.FlatBuffers.Arceus;
 

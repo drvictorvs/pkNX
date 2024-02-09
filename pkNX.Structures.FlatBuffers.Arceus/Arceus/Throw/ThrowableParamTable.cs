@@ -12,7 +12,7 @@ namespace pkNX.Structures.FlatBuffers.Arceus;
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class ThrowableParamTable
 {
-    public void AddEntry(int i)
+    public void AddEntry()
     {
         Table = Table.Append(new ThrowableParam
         {

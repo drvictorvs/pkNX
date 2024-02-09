@@ -45,10 +45,13 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Randomize = new System.Windows.Forms.TabPage();
             this.B_Randomize = new System.Windows.Forms.Button();
             this.PG_RandSettings = new System.Windows.Forms.PropertyGrid();
+            // this.Tab_EncounterSlots = new System.Windows.Forms.TabPage();
+            // this.Edit_EncounterSlots = new pkNX.WinForms.Controls.EncounterSlotEditor8a();
             this.B_Save = new System.Windows.Forms.Button();
             this.TC_Editor.SuspendLayout();
             this.Tab_Settings.SuspendLayout();
             this.Tab_Encounters.SuspendLayout();
+            // this.Tab_EncounterSlots.SuspendLayout();
             this.Tab_Regular.SuspendLayout();
             this.Tab_Wormhole.SuspendLayout();
             this.Tab_Landmarks.SuspendLayout();
@@ -286,6 +289,7 @@ namespace pkNX.WinForms.Subforms
         private System.Windows.Forms.Button B_AllowRiding;
         private System.Windows.Forms.PropertyGrid PG_AreaSettings;
         private System.Windows.Forms.TabPage Tab_Encounters;
+        // private System.Windows.Forms.TabPage Tab_EncounterSlots;
         private System.Windows.Forms.TabPage Tab_Regular;
         private System.Windows.Forms.TabPage Tab_Wormhole;
         private System.Windows.Forms.TabPage Tab_Landmarks;
@@ -294,6 +298,7 @@ namespace pkNX.WinForms.Subforms
         private System.Windows.Forms.Button B_Save;
         private Controls.PlacementSpawnerEditor8a Edit_RegularSpawners;
         private Controls.PlacementSpawnerEditor8a Edit_WormholeSpawners;
+        // private Controls.EncounterSlotEditor8a Edit_EncounterSlots;
         private System.Windows.Forms.PropertyGrid PG_RandSettings;
         private Controls.LandmarkEditor8a Edit_LandmarkSpawns;
         private System.Windows.Forms.Button B_Randomize;

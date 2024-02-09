@@ -84,6 +84,14 @@ public partial class PokeInfoList
         return entry;
     }
 
+    public void RemoveEntry(int entryIndex)
+    {
+        Table = Table.OrderBy(x => x.Species)
+            .ToArray();
+        var entry = Table[entryIndex];
+        Table.Remove(entry);
+    }
+
     public (ushort[] SF, byte[] Gender) Parse()
     {
         var entries = GetDexFormEntries().GroupBy(z => (int)(ushort)z)

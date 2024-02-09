@@ -52,4 +52,13 @@ public partial class PokeMiscTable
             .ToArray();
         return entry;
     }
+
+    public void RemoveEntry(int entryIndex)
+    {
+        Table = Table.OrderBy(x => x.Species)
+            .ThenBy(x => x.Form)
+            .ToArray();
+        var entry = Table[entryIndex];
+        Table.Remove(entry);
+    }
 }

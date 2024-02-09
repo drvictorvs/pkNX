@@ -18,7 +18,13 @@ public partial class EvolutionTable {
         Table = Table.Append(entry).ToList();
         return entry;
     }
- }
+
+    public void RemoveEntry(int entryIndex)
+    {
+        var entry = Table[entryIndex];
+        Table.Remove(entry);
+    }
+}
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class EvolutionEntry { }

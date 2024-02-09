@@ -58,8 +58,10 @@ public partial class EncounterTableEditor8a : UserControl
         {
             foreach (var slot in table.Table)
             {
-                if (slot.ShinyLock != ShinyType.Never)
+                if (slot.ShinyLock != ShinyType.Never) {
+                    ctr++;
                     continue;
+                }
                 slot.ShinyLock = ShinyType.Random;
                 ctr++;
             }

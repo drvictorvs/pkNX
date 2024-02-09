@@ -1,4 +1,5 @@
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,7 +12,6 @@ using pkNX.Structures.FlatBuffers;
 using pkNX.Structures.FlatBuffers.Arceus;
 using static pkNX.Structures.Species;
 using Util = pkNX.Randomization.Util;
-using System.Buffers;
 
 namespace pkNX.WinForms.Subforms;
 
@@ -153,12 +153,26 @@ public partial class AreaEditor8a : Form
     {
         Debug.WriteLine($"Loading Area {AreaIndex}");
         PG_AreaSettings.SelectedObject = Area.Settings;
-        try {
-        Edit_Encounters.LoadTable(Area.Encounters.Table, Area.Settings.Encounters);
+
+        if (Resident.GetIndexFull(Area.Settings.Encounters) == -1)
+            Edit_Encounters.Visible = false;
+        else
+            Edit_Encounters.LoadTable(Area.Encounters.Table, Area.Settings.Encounters);
+
+        if (Resident.GetIndexFull(Area.Settings.Spawners) == -1)
+            Edit_Encounters.Visible = false;
+        else
         Edit_RegularSpawners.LoadTable(Area.Spawners.Table, Area.Settings.Spawners);
-        Edit_WormholeSpawners.LoadTable(Area.Wormholes.Table, Area.Settings.WormholeSpawners);
+
+        if (Resident.GetIndexFull(Area.Settings.WormholeSpawners) == -1)
+            Edit_WormholeSpawners.Visible = false;
+        else
+            Edit_WormholeSpawners.LoadTable(Area.Wormholes.Table, Area.Settings.WormholeSpawners);
+            
+        if (Resident.GetIndexFull(Area.Settings.LandmarkItemSpawns) == -1)
+            Edit_LandmarkSpawns.Visible = false;
+        else
         Edit_LandmarkSpawns.LoadTable(Area.LandItems.Table, Area.Settings.LandmarkItemSpawns);
-        } catch { Edit_Encounters.Visible = Edit_RegularSpawners.Visible = Edit_WormholeSpawners.Visible = Edit_LandmarkSpawns.Visible = false; }
     }
 
     private void SaveArea()

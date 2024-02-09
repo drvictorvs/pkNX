@@ -1,7 +1,5 @@
-using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ClassNeverInstantiated.Global
@@ -52,6 +50,10 @@ public partial class PokeResourceTable
     {
         Debug.Assert(!HasEntry(species, form, gender), "The resource info table already contains an entry for the same species!");
 
+        if (HasEntry(species, form, gender))
+            throw new ArgumentException("The resource info table already contains an entry for the same species!");
+        
+
         string pmStr = $"pm{species:0000}_{gender:00}_{form:00}";
         string basePath = $"bin/pokemon/pm{species:0000}/{pmStr}";
         var entry = new PokeModelConfig
@@ -88,5 +90,14 @@ public partial class PokeResourceTable
             .ThenBy(x => x.SpeciesInfo.Gender)
             .ToArray();
         return entry;
+    }
+    public void RemoveEntry(int entryIndex)
+    {
+        Table = Table.OrderBy(x => x.SpeciesInfo.Species)
+            .ThenBy(x => x.SpeciesInfo.Form)
+            .ThenBy(x => x.SpeciesInfo.Gender)
+            .ToArray();
+        var entry = Table[entryIndex];
+        Table.Remove(entry);
     }
 }

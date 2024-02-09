@@ -34,6 +34,7 @@ namespace pkNX.WinForms
             this.B_Dump = new System.Windows.Forms.Button();
             this.B_Rand = new System.Windows.Forms.Button();
             this.B_AddEntry = new System.Windows.Forms.Button();
+            this.B_RemoveEntry = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1.SuspendLayout();
             // 
@@ -108,6 +109,17 @@ namespace pkNX.WinForms
             this.B_AddEntry.UseVisualStyleBackColor = true;
             this.B_AddEntry.Visible = false;
             // 
+            // B_RemoveEntry
+            // 
+            this.B_RemoveEntry.Location = new System.Drawing.Point(3, 0);
+            this.B_RemoveEntry.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.B_RemoveEntry.Name = "B_RemoveEntry";
+            this.B_RemoveEntry.Size = new System.Drawing.Size(117, 44);
+            this.B_RemoveEntry.TabIndex = 5;
+            this.B_RemoveEntry.Text = "Remove Entry";
+            this.B_RemoveEntry.UseVisualStyleBackColor = true;
+            this.B_RemoveEntry.Visible = false;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -118,6 +130,7 @@ namespace pkNX.WinForms
             this.flowLayoutPanel1.Controls.Add(this.B_Dump);
             this.flowLayoutPanel1.Controls.Add(this.B_Rand);
             this.flowLayoutPanel1.Controls.Add(this.B_AddEntry);
+            this.flowLayoutPanel1.Controls.Add(this.B_RemoveEntry);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(597, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -151,6 +164,8 @@ namespace pkNX.WinForms
         private System.Windows.Forms.Button B_Dump;
         private System.Windows.Forms.Button B_Rand;
         private System.Windows.Forms.Button B_AddEntry;
+
+        private System.Windows.Forms.Button B_RemoveEntry;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

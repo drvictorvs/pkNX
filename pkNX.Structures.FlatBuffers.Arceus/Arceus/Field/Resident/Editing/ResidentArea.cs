@@ -48,8 +48,6 @@ public sealed class ResidentArea(GFPack resident, AreaSettings settings, AreaSet
 
     public void LoadInfo()
     {
-        // Load encount 
-        try {
         Encounters   = TryRead<EncounterDataArchive      >(Settings.Encounters);
         Locations    = TryRead<PlacementLocationArchive  >(Settings.Locations);
         Spawners     = TryRead<PlacementSpawnerArchive   >(Settings.Spawners);
@@ -59,9 +57,6 @@ public sealed class ResidentArea(GFPack resident, AreaSettings settings, AreaSet
         Unown        = TryRead<PlacementUnnnTable        >(Settings.UnownSpawners);
         Mikaruge     = TryRead<PlacementMkrgTable        >(Settings.Mkrg);
         SearchItem   = TryRead<PlacementSearchItemTable  >(Settings.SearchItem);
-        } catch {
-            return;
-        }
     }
     
     public void SaveInfo()
@@ -85,7 +80,7 @@ public sealed class ResidentArea(GFPack resident, AreaSettings settings, AreaSet
         Debug.WriteLine($"Writing {SearchItem} to {Settings.SearchItem}");
         TryWrite(Settings.SearchItem, SearchItem);
         if(Table != null){
-            Debug.WriteLine($"Writing {Table} to {Settings.SearchItem}");
+            Debug.WriteLine($"Writing {Table} to bin/field/resident/AreaSettings.bin");
             TryWrite("bin/field/resident/AreaSettings.bin", Table);
         }
     }
