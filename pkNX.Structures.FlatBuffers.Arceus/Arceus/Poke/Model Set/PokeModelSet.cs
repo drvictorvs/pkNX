@@ -42,11 +42,11 @@ public partial class PokeModelSet
     public void RemoveEntry(int entryIndex)
     {
         Table = Table.OrderBy(x => x.Species)
-            .ThenBy(x => x.Form)
-            .ToArray();
-        var entry = Table[entryIndex];
-        Table.Remove(entry);
-    }}
+            .ToList();
+        Table.Remove(Table[entryIndex]);
+        Table = Table.ToArray();
+    }
+}
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class PokeModelSetEntry { }

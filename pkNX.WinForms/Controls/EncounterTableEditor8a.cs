@@ -24,24 +24,18 @@ public partial class EncounterTableEditor8a : UserControl
         Visible = true;
         L_ConfigName.Text = path;
 
-        var items = table.Select(z => new ComboItem(z.TableName.Replace("\"", ""), z)).ToArray();
-        CB_Encounters.DisplayMember = nameof(ComboItem.Text);
-        CB_Encounters.ValueMember = nameof(ComboItem.Value);
+        var items = table.Select(z => new ComboItem<EncounterTable>(z.TableName.Replace("\"", ""), z)).ToArray();
+        CB_Encounters.DisplayMember = nameof(ComboItem<EncounterTable>.Text);
+        CB_Encounters.ValueMember = nameof(ComboItem<EncounterTable>.Value);
         CB_Encounters.DataSource = new BindingSource(items, null);
 
         CB_Encounters.SelectedIndex = 0;
     }
 
-    private class ComboItem
+    private class ComboItem<T>(string text, T value)
     {
-        public ComboItem(string text, EncounterTable value)
-        {
-            Text = text;
-            Value = value;
-        }
-
-        public string Text { get; }
-        public EncounterTable Value { get; }
+        public string Text { get; } = text;
+        public T Value { get; } = value;
     }
 
     private void CB_Encounters_SelectedIndexChanged(object sender, EventArgs e)

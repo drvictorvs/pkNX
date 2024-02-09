@@ -175,5 +175,5 @@ public partial class EncounterSlot
         Move1 = Move2 = Move3 = Move4 = 0;
         Move1Mastered = Move2Mastered = Move3Mastered = Move4Mastered = false;
     }
-    public override string ToString() => $"Slot({SlotName}, 0x{SlotID:X16}, {Species}, {Gender}, {Form}, {ShinyLock}, {AbilityRandType}, {Nature}, {Height}, {Weight}, {Field09}, {Field10}, {Field11}, {Field12}, {GVHP}, {GVATK}, {GVDEF}, {GVSPA}, {GVSPD}, {GVSPE}, {IVHP}, {IVATK}, {IVDEF}, {IVSPA}, {IVSPD}, {IVSPE}, {NumPerfectIvs}, {Behavior1}, {Behavior2}, {Field28AffectsLottery}, {BaseProbability}, {OverrideMinLevel}, {OverrideMaxLevel}, {Field32}, {HasMoveset}, {Move1}, {Move2}, {Move3}, {Move4}, {Move1Mastered}, {Move2Mastered}, {Move3Mastered}, {Move4Mastered}, {Unused}, {Field43Func1A25908}, {Field44SetsPropTo100Not8000})";
+    public override string ToString() => $"{Species} [{Form}])";
 }

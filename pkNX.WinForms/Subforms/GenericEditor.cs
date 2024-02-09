@@ -83,6 +83,7 @@ public sealed partial class GenericEditor<T> : Form where T : class
                     Names = GetNames(nameSelector);
 
                     CB_EntryName.Items.Clear();
+                    CB_EntryName.SelectedIndex--;
                     CB_EntryName.Items.AddRange(Names);
 
                     System.Media.SystemSounds.Asterisk.Play();

@@ -47,7 +47,7 @@
             this.B_HighEncounterChance.Text = "High Encounter Chance";
             this.TT_ButtonToolTip.SetToolTip(this.B_HighEncounterChance, "Set all ActivationRate\'s of all spawners in this area to 75");
             this.B_HighEncounterChance.UseVisualStyleBackColor = true;
-            this.B_HighEncounterChance.Click += new System.EventHandler(this.B_HighEncounterChance_Click);
+            this.B_HighEncounterChance.Click += new System.EventHandler(this.B_HigherEncounterChance_Click);
             // 
             // PG_Encounters
             // 

@@ -35,7 +35,11 @@ namespace pkNX.WinForms.Subforms
             this.B_AllowRiding = new System.Windows.Forms.Button();
             this.PG_AreaSettings = new System.Windows.Forms.PropertyGrid();
             this.Tab_Encounters = new System.Windows.Forms.TabPage();
-            this.Edit_Encounters = new pkNX.WinForms.Controls.EncounterTableEditor8a();
+            this.TC_EncounterEditor = new System.Windows.Forms.TabControl();
+            this.Tab_EncounterSettings = new System.Windows.Forms.TabPage();
+            this.Edit_EncounterSettings = new pkNX.WinForms.Controls.EncounterTableEditor8a();
+            this.Tab_EncounterSlots = new System.Windows.Forms.TabPage();
+            this.Edit_EncounterSlots = new pkNX.WinForms.Controls.EncounterSlotEditor8a();
             this.Tab_Regular = new System.Windows.Forms.TabPage();
             this.Edit_RegularSpawners = new pkNX.WinForms.Controls.PlacementSpawnerEditor8a();
             this.Tab_Wormhole = new System.Windows.Forms.TabPage();
@@ -45,13 +49,12 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Randomize = new System.Windows.Forms.TabPage();
             this.B_Randomize = new System.Windows.Forms.Button();
             this.PG_RandSettings = new System.Windows.Forms.PropertyGrid();
-            // this.Tab_EncounterSlots = new System.Windows.Forms.TabPage();
-            // this.Edit_EncounterSlots = new pkNX.WinForms.Controls.EncounterSlotEditor8a();
             this.B_Save = new System.Windows.Forms.Button();
             this.TC_Editor.SuspendLayout();
             this.Tab_Settings.SuspendLayout();
             this.Tab_Encounters.SuspendLayout();
-            // this.Tab_EncounterSlots.SuspendLayout();
+            this.Tab_EncounterSettings.SuspendLayout();
+            this.Tab_EncounterSlots.SuspendLayout();
             this.Tab_Regular.SuspendLayout();
             this.Tab_Wormhole.SuspendLayout();
             this.Tab_Landmarks.SuspendLayout();
@@ -125,7 +128,7 @@ namespace pkNX.WinForms.Subforms
             // 
             // Tab_Encounters
             // 
-            this.Tab_Encounters.Controls.Add(this.Edit_Encounters);
+            this.Tab_Encounters.Controls.Add(this.TC_EncounterEditor);
             this.Tab_Encounters.Location = new System.Drawing.Point(4, 34);
             this.Tab_Encounters.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Tab_Encounters.Name = "Tab_Encounters";
@@ -134,16 +137,64 @@ namespace pkNX.WinForms.Subforms
             this.Tab_Encounters.Text = "Encounters";
             this.Tab_Encounters.UseVisualStyleBackColor = true;
             // 
-            // Edit_Encounters
+            // TC_EncounterEditor
             // 
-            this.Edit_Encounters.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Edit_Encounters.Location = new System.Drawing.Point(0, 0);
-            this.Edit_Encounters.Margin = new System.Windows.Forms.Padding(7, 10, 7, 10);
-            this.Edit_Encounters.MinimumSize = new System.Drawing.Size(859, 568);
-            this.Edit_Encounters.Name = "Edit_Encounters";
-            this.Edit_Encounters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Edit_Encounters.Size = new System.Drawing.Size(1383, 900);
-            this.Edit_Encounters.TabIndex = 1;
+            this.TC_EncounterEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TC_EncounterEditor.Controls.Add(this.Tab_EncounterSettings);
+            this.TC_EncounterEditor.Controls.Add(this.Tab_EncounterSlots);
+            this.TC_EncounterEditor.Location = new System.Drawing.Point(0, 0);
+            this.TC_EncounterEditor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TC_EncounterEditor.MinimumSize = new System.Drawing.Size(859, 592);
+            this.TC_EncounterEditor.Name = "TC_EncounterEditor";
+            this.TC_EncounterEditor.SelectedIndex = 0;
+            this.TC_EncounterEditor.Size = new System.Drawing.Size(1391, 938);
+            this.TC_EncounterEditor.TabIndex = 1;
+            // 
+            // Tab_EncounterSettings
+            // 
+            this.Tab_EncounterSettings.Controls.Add(this.Edit_EncounterSettings);
+            this.Tab_EncounterSettings.Location = new System.Drawing.Point(4, 54);
+            this.Tab_EncounterSettings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Tab_EncounterSettings.Name = "Tab_EncounterSettings";
+            this.Tab_EncounterSettings.Size = new System.Drawing.Size(1383, 900);
+            this.Tab_EncounterSettings.TabIndex = 1;
+            this.Tab_EncounterSettings.Text = "Encounters";
+            this.Tab_EncounterSettings.UseVisualStyleBackColor = true;
+            // 
+            // Tab_EncounterSlots
+            // 
+            this.Tab_EncounterSlots.Controls.Add(this.Edit_EncounterSlots);
+            this.Tab_EncounterSlots.Location = new System.Drawing.Point(4, 54);
+            this.Tab_EncounterSlots.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Tab_EncounterSlots.Name = "Tab_EncounterSlots";
+            this.Tab_EncounterSlots.Size = new System.Drawing.Size(1383, 900);
+            this.Tab_EncounterSlots.TabIndex = 1;
+            this.Tab_EncounterSlots.Text = "Encounter Slots";
+            this.Tab_EncounterSlots.UseVisualStyleBackColor = true;
+            // 
+            // Edit_EncounterSlots
+            // 
+            this.Edit_EncounterSlots.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Edit_EncounterSlots.Location = new System.Drawing.Point(0, 0);
+            this.Edit_EncounterSlots.Margin = new System.Windows.Forms.Padding(7, 10, 7, 10);
+            this.Edit_EncounterSlots.MinimumSize = new System.Drawing.Size(859, 568);
+            this.Edit_EncounterSlots.Name = "Edit_EncounterSlots";
+            this.Edit_EncounterSlots.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Edit_EncounterSlots.Size = new System.Drawing.Size(1383, 900);
+            this.Edit_EncounterSlots.TabIndex = 1;
+            // 
+            // Edit_EncounterSettings
+            // 
+            this.Edit_EncounterSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Edit_EncounterSettings.Location = new System.Drawing.Point(0, 0);
+            this.Edit_EncounterSettings.Margin = new System.Windows.Forms.Padding(7, 10, 7, 10);
+            this.Edit_EncounterSettings.MinimumSize = new System.Drawing.Size(859, 568);
+            this.Edit_EncounterSettings.Name = "Edit_EncounterSettings";
+            this.Edit_EncounterSettings.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Edit_EncounterSettings.Size = new System.Drawing.Size(1383, 900);
+            this.Edit_EncounterSettings.TabIndex = 1;
             // 
             // Tab_Regular
             // 
@@ -285,20 +336,22 @@ namespace pkNX.WinForms.Subforms
         #endregion
         private System.Windows.Forms.ComboBox CB_Area;
         private System.Windows.Forms.TabControl TC_Editor;
+        private System.Windows.Forms.TabControl TC_EncounterEditor;
         private System.Windows.Forms.TabPage Tab_Settings;
         private System.Windows.Forms.Button B_AllowRiding;
         private System.Windows.Forms.PropertyGrid PG_AreaSettings;
         private System.Windows.Forms.TabPage Tab_Encounters;
-        // private System.Windows.Forms.TabPage Tab_EncounterSlots;
+        private System.Windows.Forms.TabPage Tab_EncounterSettings;
+        private System.Windows.Forms.TabPage Tab_EncounterSlots;
         private System.Windows.Forms.TabPage Tab_Regular;
         private System.Windows.Forms.TabPage Tab_Wormhole;
         private System.Windows.Forms.TabPage Tab_Landmarks;
-        private Controls.EncounterTableEditor8a Edit_Encounters;
+        private Controls.EncounterTableEditor8a Edit_EncounterSettings;
+        private Controls.EncounterSlotEditor8a Edit_EncounterSlots;
         private System.Windows.Forms.TabPage Tab_Randomize;
         private System.Windows.Forms.Button B_Save;
         private Controls.PlacementSpawnerEditor8a Edit_RegularSpawners;
         private Controls.PlacementSpawnerEditor8a Edit_WormholeSpawners;
-        // private Controls.EncounterSlotEditor8a Edit_EncounterSlots;
         private System.Windows.Forms.PropertyGrid PG_RandSettings;
         private Controls.LandmarkEditor8a Edit_LandmarkSpawns;
         private System.Windows.Forms.Button B_Randomize;

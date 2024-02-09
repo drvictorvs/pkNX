@@ -87,9 +87,9 @@ public partial class PokeInfoList
     public void RemoveEntry(int entryIndex)
     {
         Table = Table.OrderBy(x => x.Species)
-            .ToArray();
-        var entry = Table[entryIndex];
-        Table.Remove(entry);
+            .ToList();
+        Table.Remove(Table[entryIndex]);
+        Table = Table.ToArray();
     }
 
     public (ushort[] SF, byte[] Gender) Parse()

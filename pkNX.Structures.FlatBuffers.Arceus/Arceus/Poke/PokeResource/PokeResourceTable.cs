@@ -91,13 +91,14 @@ public partial class PokeResourceTable
             .ToArray();
         return entry;
     }
+
     public void RemoveEntry(int entryIndex)
     {
         Table = Table.OrderBy(x => x.SpeciesInfo.Species)
             .ThenBy(x => x.SpeciesInfo.Form)
             .ThenBy(x => x.SpeciesInfo.Gender)
-            .ToArray();
-        var entry = Table[entryIndex];
-        Table.Remove(entry);
+            .ToList();
+        Table.Remove(Table[entryIndex]);
+        Table = Table.ToArray();
     }
 }

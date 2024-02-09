@@ -32,16 +32,10 @@ public partial class LandmarkEditor8a : UserControl
         CB_Encounters.SelectedIndex = 0;
     }
 
-    private class ComboItem
+    private class ComboItem(string text, LandmarkItemSpawn value)
     {
-        public ComboItem(string text, LandmarkItemSpawn value)
-        {
-            Text = text;
-            Value = value;
-        }
-
-        public string Text { get; }
-        public LandmarkItemSpawn Value { get; }
+        public string Text { get; } = text;
+        public LandmarkItemSpawn Value { get; } = value;
     }
 
     private void CB_Encounters_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,15 +45,14 @@ public partial class LandmarkEditor8a : UserControl
         PG_Encounters.SelectedObject = spawner;
     }
 
-    private void B_HighEncounterChance_Click(object sender, EventArgs e)
-    {
-        const int chance = 75;
+    private void B_HigherEncounterChance_Click(object sender, EventArgs e)
+    {;
         foreach (var spawner in Spawners)
         {
-            spawner.ActivationRate = chance;
+            spawner.ActivationRate = (int)(spawner.ActivationRate * 1.2);
         }
 
-        WinFormsUtil.Alert($"Changed all encounter chance to {chance}%.");
+        WinFormsUtil.Alert($"Changed all encounter chances to 1.2x.");
         CB_Encounters_SelectedIndexChanged(sender, e);
     }
 }

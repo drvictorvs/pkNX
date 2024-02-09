@@ -136,7 +136,7 @@ public static class EncounterTableUtil
     // 095 Snowpoint Temple
     private static bool IsDungeonZone(int a) => a is 64 or 86 or 95;
 
-    private static readonly int[] OybnSettings = { 15, 15, 15, 20, 20 };
+    private static readonly int[] OybnSettings = [15, 15, 15, 20, 20];
 
     private static byte[] GetArea(IReadOnlyList<int> locations, IReadOnlyCollection<EncounterSlot> slots,
         int tableMinLevel, int tableMaxLevel, SpawnerType type,
