@@ -36,6 +36,7 @@
             this.B_CloneTableEntry = new System.Windows.Forms.Button();
             this.B_ConfigureAsAlpha = new System.Windows.Forms.Button();
             this.B_RemoveCondition = new System.Windows.Forms.Button();
+            this.B_HigherLevel = new System.Windows.Forms.Button();
             this.TT_ButtonToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
@@ -132,10 +133,25 @@
             this.B_RemoveCondition.UseVisualStyleBackColor = true;
             this.B_RemoveCondition.Click += new System.EventHandler(this.B_RemoveCondition_Click);
             // 
+            // B_HigherLevel
+            // 
+            this.B_HigherLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.B_HigherLevel.Enabled = true;
+            this.B_HigherLevel.Location = new System.Drawing.Point(490, 7);
+            this.B_HigherLevel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.B_HigherLevel.Name = "B_HigherLevel";
+            this.B_HigherLevel.Size = new System.Drawing.Size(162, 35);
+            this.B_HigherLevel.TabIndex = 12;
+            this.B_HigherLevel.Text = "Increase Levels by 10%";
+            this.TT_ButtonToolTip.SetToolTip(this.B_HigherLevel, "Sets the ConditionID and ConditionTypeID to None for the selected encounter slot");
+            this.B_HigherLevel.UseVisualStyleBackColor = true;
+            this.B_HigherLevel.Click += new System.EventHandler(this.B_HigherLevel_Click);
+            // 
             // EncounterTableEditor8a
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.B_RemoveCondition);
+            this.Controls.Add(this.B_HigherLevel);
             this.Controls.Add(this.B_ConfigureAsAlpha);
             this.Controls.Add(this.B_CloneTableEntry);
             this.Controls.Add(this.L_ConfigName);
@@ -149,7 +165,6 @@
             this.Size = new System.Drawing.Size(960, 720);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -161,6 +176,7 @@
         private System.Windows.Forms.Button B_CloneTableEntry;
         private System.Windows.Forms.Button B_ConfigureAsAlpha;
         private System.Windows.Forms.Button B_RemoveCondition;
+        private System.Windows.Forms.Button B_HigherLevel;
         private System.Windows.Forms.ToolTip TT_ButtonToolTip;
     }
 }

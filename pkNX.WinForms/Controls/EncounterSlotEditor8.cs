@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using pkNX.Game;
 using pkNX.Structures.FlatBuffers.Arceus;
@@ -14,7 +13,7 @@ public partial class EncounterSlotEditor8a : UserControl
 
     public EncounterSlotEditor8a() => InitializeComponent();
 
-    public void LoadTable(IList<EncounterTable> table, string path)
+    public void LoadTable(IList<EncounterTable> table, string path, GameManagerPLA rom)
     {
         if (table.Count == 0)
         {
@@ -25,8 +24,11 @@ public partial class EncounterSlotEditor8a : UserControl
         Visible = true;
         L_ConfigName.Text = path;
 
+        GameManagerPLA ROM = rom;
+
         Tables = table.SelectMany(table => table.Table.Where(slot => slot != null)).ToArray();
-        var items = Tables.Select(slot => new ComboItem<EncounterSlot>($"{slot.Species} ({slot.Form})", slot)).ToArray();
+        var s = ROM.GetStrings(TextName.SpeciesNames);
+        var items = Tables.Select((slot, i) => new ComboItem<EncounterSlot>($"{s[slot.Species]}{(slot.Form != 0 ? $"-{slot.Form}" : "")} [#{i+1}]", slot)).ToArray();
         CB_EncounterSlots.DisplayMember = nameof(ComboItem<EncounterSlot>.Text);
         CB_EncounterSlots.ValueMember = nameof(ComboItem<EncounterSlot>.Value);
         CB_EncounterSlots.DataSource = new BindingSource(items, null);

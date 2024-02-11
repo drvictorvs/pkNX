@@ -114,4 +114,15 @@ public partial class EncounterTableEditor8a : UserControl
             PG_Encounters.Refresh();
         }
     }
+
+    private void B_HigherLevel_Click(object sender, EventArgs e)
+    {
+        var obj = PG_Encounters.SelectedGridItem.Value;
+        if (obj is EncounterTable tableToEdit)
+        {
+            tableToEdit.MinLevel = ((int)((int)tableToEdit.MinLevel * 1.1));
+            tableToEdit.MaxLevel = (int)((int)tableToEdit.MaxLevel * 1.1);
+            PG_Encounters.Refresh();
+        }
+    }
 }

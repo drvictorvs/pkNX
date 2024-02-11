@@ -33,6 +33,7 @@ namespace pkNX.WinForms.Subforms
             this.TC_Editor = new System.Windows.Forms.TabControl();
             this.Tab_Settings = new System.Windows.Forms.TabPage();
             this.B_AllowRiding = new System.Windows.Forms.Button();
+            this.B_ChangeProperty = new System.Windows.Forms.Button();
             this.PG_AreaSettings = new System.Windows.Forms.PropertyGrid();
             this.Tab_Encounters = new System.Windows.Forms.TabPage();
             this.TC_EncounterEditor = new System.Windows.Forms.TabControl();
@@ -94,6 +95,7 @@ namespace pkNX.WinForms.Subforms
             // 
             // Tab_Settings
             // 
+            this.Tab_Settings.Controls.Add(this.B_ChangeProperty);
             this.Tab_Settings.Controls.Add(this.B_AllowRiding);
             this.Tab_Settings.Controls.Add(this.PG_AreaSettings);
             this.Tab_Settings.Location = new System.Drawing.Point(4, 34);
@@ -116,6 +118,18 @@ namespace pkNX.WinForms.Subforms
             this.B_AllowRiding.Text = "Allow Riding Anywhere";
             this.B_AllowRiding.UseVisualStyleBackColor = true;
             this.B_AllowRiding.Click += new System.EventHandler(this.B_AllowRiding_Click);
+            // 
+            // B_ChangeProperty
+            // 
+            this.B_ChangeProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.B_ChangeProperty.Location = new System.Drawing.Point(469, 6);
+            this.B_ChangeProperty.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.B_ChangeProperty.Name = "B_ChangeProperty";
+            this.B_ChangeProperty.Size = new System.Drawing.Size(324, 44);
+            this.B_ChangeProperty.TabIndex = 6;
+            this.B_ChangeProperty.Text = "Change Property Everywhere";
+            this.B_ChangeProperty.UseVisualStyleBackColor = true;
+            this.B_ChangeProperty.Click += new System.EventHandler(this.B_ChangeProperty_Click);
             // 
             // PG_AreaSettings
             // 
@@ -339,6 +353,7 @@ namespace pkNX.WinForms.Subforms
         private System.Windows.Forms.TabControl TC_EncounterEditor;
         private System.Windows.Forms.TabPage Tab_Settings;
         private System.Windows.Forms.Button B_AllowRiding;
+        private System.Windows.Forms.Button B_ChangeProperty;
         private System.Windows.Forms.PropertyGrid PG_AreaSettings;
         private System.Windows.Forms.TabPage Tab_Encounters;
         private System.Windows.Forms.TabPage Tab_EncounterSettings;

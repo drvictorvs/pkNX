@@ -3,6 +3,7 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using pkNX.Containers;
 using pkNX.Game;
@@ -78,11 +79,82 @@ public partial class AreaEditor8a : Form
 
     private void B_AllowRiding_Click(object sender, EventArgs e)
     {
-        for(int i = 0; i < AreaNames.Length; i++){
+        for(int i = 2; i < AreaNames.Length; i++){
             SaveArea();
             (AreaIndex, Area) = LoadAreaByName(AreaNames[i]);
+            CB_Area.SelectedIndex = AreaIndex;
             LoadArea();
             Area.Settings.CanRide = true;
+        }
+        System.Media.SystemSounds.Asterisk.Play();
+    }
+
+    private void B_ChangeProperty_Click(object sender, EventArgs e)
+    {
+        Form dialog = new()
+        {
+            Text = "Enter the property name you want to change:",
+            Width = 400,
+            Height = 150,
+            FormBorderStyle = FormBorderStyle.FixedDialog,
+            StartPosition = FormStartPosition.CenterScreen
+        };
+        Label label = new Label
+        {
+            Text = "Property name:",
+            Left = 10,
+            Top = 10,
+            Width = 100
+        };
+        TextBox textBox = new TextBox
+        {
+            Left = 120,
+            Top = 10,
+            Width = 250
+        };
+        Button buttonOk = new Button
+        {
+            Text = "OK",
+            Left = 200,
+            Top = 50,
+            Width = 80,
+            Height = 30,
+            DialogResult = DialogResult.OK
+        };
+        Button buttonCancel = new Button
+        {
+            Text = "Cancel",
+            Left = 290,
+            Top = 50,
+            Width = 80,
+            Height = 30,
+            DialogResult = DialogResult.Cancel
+        };
+        dialog.Controls.Add(label);
+        dialog.Controls.Add(textBox);
+        dialog.Controls.Add(buttonOk);
+        dialog.Controls.Add(buttonCancel);
+        dialog.AcceptButton = buttonOk;
+        bool failure = true;
+        while (failure){
+            var result = dialog.ShowDialog();
+            if(result == DialogResult.Cancel)
+                break;
+            string propertyName = textBox.Text;
+
+            PropertyInfo? propInfo = typeof(AreaSettings).GetProperty(propertyName);
+                if (propInfo != null && propInfo.PropertyType == typeof(bool))
+                {
+                    for(int i = 2; i < AreaNames.Length; i++){
+                        SaveArea();
+                        (AreaIndex, Area) = LoadAreaByName(AreaNames[i]);
+                        LoadArea();
+                        propInfo.SetValue(Area.Settings, true);
+                        failure = false;
+                    }
+                } else {
+                    dialog.Text = $"Property {propertyName} non-existent or not bool. Try again or cancel the operation.";
+                }
         }
         System.Media.SystemSounds.Asterisk.Play();
     }
@@ -155,14 +227,20 @@ public partial class AreaEditor8a : Form
         PG_AreaSettings.SelectedObject = Area.Settings;
 
         if (Resident.GetIndexFull(Area.Settings.Encounters) == -1)
-            Edit_Encounters.Visible = false;
+        {
+            Edit_EncounterSettings.Visible = false;
+            Edit_EncounterSlots.Visible = false;
+        }
         else
-            Edit_Encounters.LoadTable(Area.Encounters.Table, Area.Settings.Encounters);
+        {
+            Edit_EncounterSettings.LoadTable(Area.Encounters.Table, Area.Settings.Encounters);
+            Edit_EncounterSlots.LoadTable(Area.Encounters.Table, Area.Settings.Encounters, ROM);
+        }
 
         if (Resident.GetIndexFull(Area.Settings.Spawners) == -1)
-            Edit_Encounters.Visible = false;
+            Edit_RegularSpawners.Visible = false;
         else
-        Edit_RegularSpawners.LoadTable(Area.Spawners.Table, Area.Settings.Spawners);
+            Edit_RegularSpawners.LoadTable(Area.Spawners.Table, Area.Settings.Spawners);
 
         if (Resident.GetIndexFull(Area.Settings.WormholeSpawners) == -1)
             Edit_WormholeSpawners.Visible = false;
