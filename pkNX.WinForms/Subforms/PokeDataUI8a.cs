@@ -48,6 +48,7 @@ public partial class PokeDataUI8a : Form
     public IPersonalInfoPLA cPersonal;
     public LearnsetMeta cLearnset;
     public EvolutionSet cEvos;
+    public MoveShopTable moveShop;
 
     public PokeDataUI8a(PokeEditor8a editor, GameManager rom, GameData8a data)
     {
@@ -105,8 +106,8 @@ public partial class PokeDataUI8a : Form
             CLB_TM.Items.Add($"TR{i - 100:00} {movelist[TMs[i]]}");
         for (int i = 0; i < Legal.TypeTutor8.Length; i++)
             CLB_TypeTutor.Items.Add(movelist[Legal.TypeTutor8[i]]);*/
-        foreach (ushort move in Legal.MoveShop8_LA)
-            CLB_SpecialTutor.Items.Add(movelist[move]);
+        var moves = moveShop.Table.Select(table => nameof(table.Move)).ToArray();
+        CLB_SpecialTutor.Items.AddRange(moves);
 
         var entries = entryNames.Select((z, i) => $"{z} - {i:0000}");
         CB_Species.Items.AddRange(entries.ToArray());
