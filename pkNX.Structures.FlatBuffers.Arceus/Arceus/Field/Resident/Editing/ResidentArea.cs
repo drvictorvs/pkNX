@@ -13,6 +13,8 @@ public sealed class ResidentArea(GFPack resident, AreaSettings settings, AreaSet
     public string AreaName => Settings.Name;
     public string FriendlyAreaName => Settings.FriendlyAreaName;
 
+    internal bool DoWrite { get; set; } = false;
+
     // Encount
     public EncounterDataArchive Encounters { get; private set; } = null!;
 
@@ -40,7 +42,7 @@ public sealed class ResidentArea(GFPack resident, AreaSettings settings, AreaSet
     {
         var index = resident.GetIndexFull(path);
         if (index == -1)
-            return;
+            throw new ArgumentOutOfRangeException(nameof(path));
 
         byte[] result = FlatBufferConverter.SerializeFrom(obj);
         resident[index] = result;
@@ -48,19 +50,48 @@ public sealed class ResidentArea(GFPack resident, AreaSettings settings, AreaSet
 
     public void LoadInfo()
     {
-        Encounters   = TryRead<EncounterDataArchive      >(Settings.Encounters);
-        Locations    = TryRead<PlacementLocationArchive  >(Settings.Locations);
-        Spawners     = TryRead<PlacementSpawnerArchive   >(Settings.Spawners);
-        Wormholes    = TryRead<PlacementSpawnerArchive   >(Settings.WormholeSpawners);
-        LandItems    = TryRead<LandmarkItemSpawnTable    >(Settings.LandmarkItemSpawns);
-        LandMarks    = TryRead<LandmarkItemTable         >(Settings.LandmarkItems);
-        Unown        = TryRead<PlacementUnnnTable        >(Settings.UnownSpawners);
-        Mikaruge     = TryRead<PlacementMkrgTable        >(Settings.Mkrg);
-        SearchItem   = TryRead<PlacementSearchItemTable  >(Settings.SearchItem);
+        DoWrite = false;
+        try{ Encounters   = TryRead<EncounterDataArchive      >(Settings.Encounters); }
+        catch{throw new Exception("Encounters"); }
+        finally { DoWrite = true; }
+
+        try{ Locations    = TryRead<PlacementLocationArchive  >(Settings.Locations); }
+        catch { throw new Exception("Locations"); }
+        finally { DoWrite = DoWrite & true; }
+
+        try{ Spawners     = TryRead<PlacementSpawnerArchive   >(Settings.Spawners); }
+        catch { throw new Exception("Spawners"); }
+        finally { DoWrite = DoWrite & true; }
+
+        try{ Wormholes    = TryRead<PlacementSpawnerArchive   >(Settings.WormholeSpawners); }
+        catch { throw new Exception("Wormholes"); }
+        finally { DoWrite = DoWrite & true; }
+
+        try{ LandItems    = TryRead<LandmarkItemSpawnTable    >(Settings.LandmarkItemSpawns); }
+        catch { throw new Exception("LandItems"); }
+        finally { DoWrite = DoWrite & true; }
+
+        try{ LandMarks    = TryRead<LandmarkItemTable         >(Settings.LandmarkItems); }
+        catch { throw new Exception("LandMarks"); }
+        finally { DoWrite = DoWrite & true; }
+
+        try{ Unown        = TryRead<PlacementUnnnTable        >(Settings.UnownSpawners); }
+        catch { throw new Exception("Unown"); }
+        finally { DoWrite = DoWrite & true; }
+
+        try{ Mikaruge     = TryRead<PlacementMkrgTable        >(Settings.Mkrg); }
+        catch { throw new Exception("Mikaruge"); }
+        finally { DoWrite = DoWrite & true; }
+
+        try { SearchItem   = TryRead<PlacementSearchItemTable  >(Settings.SearchItem); }
+        catch { throw new Exception("SearchItem"); }
+        finally { DoWrite = DoWrite & true; }
     }
     
-    public void SaveInfo()
+    public void SaveInfo(string areaName)
     {
+        if(!DoWrite || areaName.Contains("test") || areaName.Contains("processing"))
+            return;
         Debug.WriteLine($"Writing {Encounters} to {Settings.Encounters}");
         TryWrite(Settings.Encounters, Encounters);
         Debug.WriteLine($"Writing {Locations} to {Settings.Locations}");
@@ -79,9 +110,7 @@ public sealed class ResidentArea(GFPack resident, AreaSettings settings, AreaSet
         TryWrite(Settings.Mkrg, Mikaruge);
         Debug.WriteLine($"Writing {SearchItem} to {Settings.SearchItem}");
         TryWrite(Settings.SearchItem, SearchItem);
-        if(Table != null){
-            Debug.WriteLine($"Writing {Table} to bin/field/resident/AreaSettings.bin");
-            TryWrite("bin/field/resident/AreaSettings.bin", Table);
-        }
+        Debug.WriteLine($"Writing {Table} to bin/field/resident/AreaSettings.bin");
+        TryWrite("bin/field/resident/AreaSettings.bin", Table);
     }
 }

@@ -1,13 +1,69 @@
 include "ThrowPermissionSet.fbs";
-
+include "ThrowParamTable.fbs";
 namespace pkNX.Structures.FlatBuffers.Arceus;
 attribute "fs_serializer";
 
+enum ItemTypeEnum : ulong {
+    PokéBall = 9639891125915343000,
+    GreatBall = 13336605279985707000,
+    UltraBall = 10139332664164690000,
+    FeatherBall = 12081817834718624000,
+    WingBall = 10244654645457381000,
+    JetBall = 17684427618778350000,
+    HeavyBall = 14039934344932985000,
+    LeadenBall = 16750911299872120000,
+    GigatonBall = 4752037758586446000,
+    OriginBall = 8442561496687768000,
+    StrangeBall = 6980796291695759000,
+    ScatterBang = 13989212223827755000,
+    SmokeBomb = 18408830188788005000,
+    HoneyCake = 4946605951067014000,
+    GrainCake = 13164133080954827000,
+    BeanCake = 16729575415691684000,
+    MushroomCake = 16199534038064169000,
+    SaltCake = 17656695898593903000,
+    FigyBerry = 3889860081971742000,
+    WikiBerry = 2740560845127981600,
+    MagoBerry = 5038603685235615000,
+    AguavBerry = 15115561564664035000,
+    IapapaBerry = 6643614804760053000,
+    RazzBerry = 13123907398820639000,
+    NanabBerry = 753736312630969500,
+    PinapBerry = 4046979396795075600,
+    HopoBerry = 4546791328902914600,
+    DazzlingHoney = 6879616134700464000,
+    HeartyGrains = 14481947335519859000,
+    PlumpBeans = 14188325924716362000,
+    SpringyMushroom = 8210874092842386000,
+    CrunchySalt = 690008699253021800,
+    CheriBerry = 16325925810802538000,
+    ChestoBerry = 9213230804992862000,
+    PechaBerry = 7515274817807914000,
+    RawstBerry = 5529900318925400000,
+    AspearBerry = 13932172214756719000,
+    LeppaBerry = 262498478356843360,
+    OranBerry = 9778785310865988000,
+    LumBerry = 10823674355172321000,
+    SitrusBerry = 13848339635970679000,
+    ForestBalm = 11462658086753143000,
+    MarshBalm = 11462656987241513000,
+    VolcanoBalm = 11462655887729885000,
+    MountainBalm = 11462654788218257000,
+    SnowBalm = 11462653688706630000,
+    TimeBalm = 11462672380404308000,
+    SpaceBalm = 11462694370636874000,
+    MysteriousBalm = 11462675678939193000,
+    BallofMud = 7516670049116131000,
+    SpoiledApricorn = 4678155322877545000,
+    Snowball = 7524229727438453000,
+    StickyGlob = 1570383358644127200,
+}
+
 table ThrowableParam {
     ItemID:int (key);
-    ItemType:ulong;
-    ThrowPermissionSet:ulong;
-    ThrowParam:ulong;
+    ItemType:ItemTypeEnum;
+    ThrowPermissionSet:ThrowPermissionEnum;
+    ThrowParam:ThrowParamEnum;
     Hash_04:ulong;
     Field_05:int;
     Field_06:float;

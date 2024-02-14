@@ -1,8 +1,17 @@
 namespace pkNX.Structures.FlatBuffers.Arceus;
 attribute "fs_serializer";
 
+enum ThrowParamEnum : ulong {
+    NormalBall = 12665484173717205406,
+    LighterBall = 7752427707243570650,
+    HeavierBall = 16842833997224158684,
+    SnowBalm = 11567203277082991913,
+    VolcanoBalm = 14423473160414415022,
+    Ingredients = 12665484173717205406,
+}
+
 table ThrowParam {
-    ThrowParamType:ulong (key);
+    ThrowParamType:ThrowParamEnum (key);
 
     /// more speed
     Velocity:float;

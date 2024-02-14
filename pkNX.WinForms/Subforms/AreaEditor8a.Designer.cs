@@ -110,10 +110,10 @@ namespace pkNX.WinForms.Subforms
             // B_AllowRiding
             // 
             this.B_AllowRiding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.B_AllowRiding.Location = new System.Drawing.Point(969, 6);
+            this.B_AllowRiding.Location = new System.Drawing.Point(979, 6);
             this.B_AllowRiding.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.B_AllowRiding.Name = "B_AllowRiding";
-            this.B_AllowRiding.Size = new System.Drawing.Size(354, 44);
+            this.B_AllowRiding.Size = new System.Drawing.Size(334, 44);
             this.B_AllowRiding.TabIndex = 6;
             this.B_AllowRiding.Text = "Allow Riding Anywhere";
             this.B_AllowRiding.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@ namespace pkNX.WinForms.Subforms
             // B_ChangeProperty
             // 
             this.B_ChangeProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.B_ChangeProperty.Location = new System.Drawing.Point(469, 6);
+            this.B_ChangeProperty.Location = new System.Drawing.Point(569, 6);
             this.B_ChangeProperty.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.B_ChangeProperty.Name = "B_ChangeProperty";
             this.B_ChangeProperty.Size = new System.Drawing.Size(324, 44);

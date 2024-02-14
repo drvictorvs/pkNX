@@ -73,6 +73,7 @@ public sealed class GameLocation
         return GetGameFromCount(files.Length, romfs, exefs);
     }
 
+    private const int FILECOUNT_BDSP_130 = 18022;
     private const int FILECOUNT_XY = 271;
     private const int FILECOUNT_ORASDEMO = 301;
     private const int FILECOUNT_ORAS = 299;
@@ -126,6 +127,9 @@ public sealed class GameLocation
                     return GameVersion.GE;
                 return GameVersion.GP;
             }
+
+            case FILECOUNT_BDSP_130:
+                return GameVersion.BDSP;
 
             case FILECOUNT_SWSH:
             case FILECOUNT_SWSH_110:
