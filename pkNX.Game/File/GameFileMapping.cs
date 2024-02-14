@@ -236,7 +236,7 @@ public class GameFileMapping
         new(Resident               , GameFreakPack, "bin", "archive", "field", "resident_release.gfpak"),
         new(archive_contents       , SingleFile   , "bin", "archive", "archive_contents.bin"),
 
-        new(ThrowParam             , SingleFile, "bin", "capture", "throw_param_table.bin"),
+        new(ThrowParamEntry             , SingleFile, "bin", "capture", "throw_param_table.bin"),
         new(ThrowPermissionSet     , SingleFile, "bin", "capture", "throw_permissionset_dictionary.bin"),
         new(ThrowableParam         , SingleFile, "bin", "capture", "throwable_param_table.bin"),
         new(ThrowableResource      , SingleFile, "bin", "capture", "throwable_resource_dictionary.bin"),

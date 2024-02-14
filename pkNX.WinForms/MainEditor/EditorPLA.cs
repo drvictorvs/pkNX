@@ -625,7 +625,7 @@ internal class EditorPLA : EditorBase
     [EditorCallable(EditorCategory.Items)]
     public void EditThrowParam()
     {
-        PopFlat<ThrowParamTable, ThrowParam>(GameFile.ThrowParam, "Throw Param Editor", z => z.Table, (z, _) => z.ThrowParamType.ToString());
+        PopFlat<ThrowParamTable, ThrowParamEntry>(GameFile.ThrowParamEntry, "Throw Param Editor", z => z.Table, (z, _) => z.ThrowParamType.ToString());
     }
 
     [EditorCallable(EditorCategory.Items)]
@@ -638,7 +638,7 @@ internal class EditorPLA : EditorBase
     public void EditThrowableParam()
     {
         var itemNames = ROM.GetStrings(TextName.ItemNames);
-        PopFlat<ThrowableParamTable, ThrowableParam>(GameFile.ThrowableParam, "Throwable Param Editor", z => z.Table, (z, _) => $"{itemNames[z.ItemID]} ({z.ItemID})", null, t => t.AddEntry());
+        PopFlat<ThrowableParamTable, ThrowableParam>(GameFile.ThrowableParam, "Throwable Param Editor", z => z.Table, (z, _) => $"{itemNames[(int)z.ItemID]} ({(int)z.ItemID})", null, t => t.AddEntry());
     }
 
     [EditorCallable(EditorCategory.Items)]
@@ -659,8 +659,9 @@ internal class EditorPLA : EditorBase
         var obj = ROM[GameFile.ItemStats]; // mini
         var data = obj[0];
         var items = Item8a.GetArray(data);
+        var itemNames = ROM.GetStrings(TextName.ItemNames);
         var cache = new DataCache<Item8a>(items);
-        using var form = new GenericEditor<Item8a>(_ => cache, (z, _) => $"{z.ItemID}", "Item Editor");
+        using var form = new GenericEditor<Item8a>(_ => cache, (z, _) => $"{itemNames[z.ItemID]}", "Item Editor");
         form.ShowDialog();
         if (!form.Modified)
         {

@@ -1,10 +1,12 @@
 include "ThrowPermissionSet.fbs";
 include "ThrowParamTable.fbs";
+include "../Shared/ItemID.fbs";
 namespace pkNX.Structures.FlatBuffers.Arceus;
 attribute "fs_serializer";
 
 enum ItemTypeEnum : ulong {
-    PokéBall = 9639891125915343000,
+    Null = 0,
+    PokeBall = 9639891125915343000,
     GreatBall = 13336605279985707000,
     UltraBall = 10139332664164690000,
     FeatherBall = 12081817834718624000,
@@ -60,9 +62,9 @@ enum ItemTypeEnum : ulong {
 }
 
 table ThrowableParam {
-    ItemID:int (key);
+    ItemID:ItemEnum;
     ItemType:ItemTypeEnum;
-    ThrowPermissionSet:ThrowPermissionEnum;
+    ThrowPermissionSet:ThrowPermissionSetEnum;
     ThrowParam:ThrowParamEnum;
     Hash_04:ulong;
     Field_05:int;

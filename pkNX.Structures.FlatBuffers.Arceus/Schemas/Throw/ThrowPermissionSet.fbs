@@ -2,13 +2,14 @@ namespace pkNX.Structures.FlatBuffers.Arceus;
 attribute "fs_serializer";
 
 enum ThrowPermissionSetEnum : ulong {
+    Null = 0,
     Ball = 6884298016505792836,
     Ingredients = 12442211824187642016,
     Balm = 17306514069544662407,
 }
 
 table ThrowPermissionSetEntry {
-    ThrowPermissionSet:ThrowPermissionEnum;
+    ThrowPermissionSet:ThrowPermissionSetEnum;
     Field_01:int;
     Field_02:int;
     Field_03:int;

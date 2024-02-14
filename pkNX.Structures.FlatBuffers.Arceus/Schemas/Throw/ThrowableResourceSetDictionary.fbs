@@ -1,12 +1,12 @@
-namespace pkNX.Structures.FlatBuffers.Arceus;
 include "ThrowableParamTable.fbs";
+namespace pkNX.Structures.FlatBuffers.Arceus;
 attribute "fs_serializer";
 
 table ThrowableResourceSetEntry {
-    ItemType: ItemTypeEnum (key);
+    ItemType: ItemTypeEnum;
     Flag: bool ;
     Hash_02: ulong;
-    ItemCategory: ItemCategoryEnum;
+    ItemCategory: ulong;
     Hash_04: ulong;
     HitTrajectoryType: ulong;
     HitEffectType: ulong;

@@ -2,6 +2,7 @@ namespace pkNX.Structures.FlatBuffers.Arceus;
 attribute "fs_serializer";
 
 enum ThrowParamEnum : ulong {
+    Null = 0,
     NormalBall = 12665484173717205406,
     LighterBall = 7752427707243570650,
     HeavierBall = 16842833997224158684,
@@ -10,24 +11,20 @@ enum ThrowParamEnum : ulong {
     Ingredients = 12665484173717205406,
 }
 
-table ThrowParam {
-    ThrowParamType:ThrowParamEnum (key);
-
+table ThrowParamEntry {
+    ThrowParamType:ThrowParamEnum;
     /// more speed
     Velocity:float;
-
     /// more arc
     Arc:float;
-
     /// higher values make it fall less, and go less forward
     GravityDirection:float;
-
     /// higher values go straight up?
     ThrowAngle:float;
 }
 
 table ThrowParamTable (fs_serializer) {
-    Table:[ThrowParam] (required);
+    Table:[ThrowParamEntry] (required);
 }
 
 root_type ThrowParamTable;

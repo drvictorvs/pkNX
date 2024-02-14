@@ -203,7 +203,7 @@ public enum GameFile
     DexFormStorage,
     DexRank,
 
-    ThrowParam,
+    ThrowParamEntry,
     ThrowPermissionSet,
     ThrowableParam,
     ThrowableResource,
