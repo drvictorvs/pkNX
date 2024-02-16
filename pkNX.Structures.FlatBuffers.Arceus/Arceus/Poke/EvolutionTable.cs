@@ -21,13 +21,19 @@ public partial class EvolutionTable {
 
     public void RemoveEntry(int entryIndex)
     {
-        var entry = Table[entryIndex];
-        Table.Remove(entry);
+        if(entryIndex > 0 && entryIndex < Table.Count){
+            var entry = Table[entryIndex];
+            Table.Remove(entry);
+        } else {
+            throw new ArgumentOutOfRangeException(nameof(entryIndex));
+        }
     }
 }
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
-public partial class EvolutionEntry { }
+public partial class EvolutionEntry {
+    public override string ToString() => $"{Method} - {Argument} - {Species}-{Form} - {Level}";
+}
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class EvolutionSet

@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using pkNX.Game;
 using PKHeX.Drawing.PokeSprite;
+using pkNX.Game;
 using pkNX.Structures;
 using pkNX.Structures.FlatBuffers.Arceus;
 using Clipboard = System.Windows.Forms.Clipboard;
@@ -280,7 +280,10 @@ public partial class PokemonEditor
         CLB_TM.ItemsSource = Legal.TMHM_SWSH.Select((moveID, i) => new CheckedMove(i, $"TM{i:00} {UIStaticSources.MovesList[moveID]}", pkm.TMHM[i]));
         CLB_TR.ItemsSource = Legal.TR_SWSH.Select((moveID, i) => new CheckedMove(i, $"TR{i:00} {UIStaticSources.MovesList[moveID]}", pkm.TR[i]));
         CLB_TypeTutor.ItemsSource = Legal.TypeTutor8.Select((moveID, i) => new CheckedMove(i, UIStaticSources.MovesList[moveID], pkm.TypeTutors[i]));
-        CLB_SpecialTutor.ItemsSource = Legal.MoveShop8_LA.Select((moveID, i) => new CheckedMove(i, UIStaticSources.MovesList[moveID], pkm.SpecialTutors[i]));
+        var MoveShopData = Editor.MoveShopData;
+        var MoveShopMoves = MoveShopData.Table.Select(table => table.MoveID);
+        CLB_SpecialTutor.ItemsSource = MoveShopMoves.Select((moveID, i) => new CheckedMove(i, UIStaticSources.MovesList[moveID], pkm.SpecialTutors[i]));
+        // CLB_SpecialTutor.ItemsSource = Legal.MoveShop8_LA.Select((moveID, i) => new CheckedMove(i, UIStaticSources.MovesList[moveID], pkm.SpecialTutors[i]));
     }
 
     private void LoadMisc(PokeMisc pokeMisc8a)

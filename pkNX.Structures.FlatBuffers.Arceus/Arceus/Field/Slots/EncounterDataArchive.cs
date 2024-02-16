@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using FlatSharp.Attributes;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ClassNeverInstantiated.Global
@@ -175,5 +176,5 @@ public partial class EncounterSlot
         Move1 = Move2 = Move3 = Move4 = 0;
         Move1Mastered = Move2Mastered = Move3Mastered = Move4Mastered = false;
     }
-    public override string ToString() => $"{Species} [{Form}])";
+    public override string ToString() => $"{Species}{(Form == 0 ? "" : $"-{Form}")})";
 }
