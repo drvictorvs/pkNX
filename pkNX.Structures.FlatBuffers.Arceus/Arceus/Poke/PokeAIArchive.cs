@@ -41,8 +41,7 @@ public partial class PokeAIArchive
         Table = Table.OrderBy(x => x.Species)
             .ThenBy(x => x.Form)
             .ToArray();
-        var entry = Table[entryIndex];
-        Table.Remove(entry);
+        Table.RemoveAt(entryIndex);
     }
 }
 

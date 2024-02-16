@@ -63,7 +63,7 @@ internal class EditorPLA : EditorBase
 
         Action<int>? rEcb = null;
         if (removeEntryCallback != null)
-            rEcb = _ => removeEntryCallback.Invoke(tableCache.Root);
+            rEcb = _ => removeEntryCallback.Invoke(tableCache.Root)(_);
 
         using var form = new GenericEditor<T2>(loader, getName, title, rand, aEcb, rEcb, canSave);
         form.ShowDialog();
@@ -169,6 +169,7 @@ internal class EditorPLA : EditorBase
             PokeResourceTable = new(ROM.GetFile(GameFile.PokemonResourceTable), z => z.Table),
             EncounterRateTable = new(ROM.GetFile(GameFile.EncounterRateTable), z => z.Table),
             CaptureCollisionTable = new(ROM.GetFile(GameFile.PokeCaptureCollision), z => z.Table),
+            MoveShopData = new(ROM.GetFile(GameFile.MoveShop), z => z.Table),
         };
         var form = new PokemonEditor(editor, ROM, Data);
         form.ShowDialog();
@@ -492,7 +493,7 @@ internal class EditorPLA : EditorBase
     public void EditMoveShop()
     {
         var names = ROM.GetStrings(TextName.MoveNames);
-        PopFlat<MoveShopTable, MoveShopIndex>(GameFile.MoveShop, "Move Shop Editor", z => z.Table, (z, _) => $"{names[(int)z.Move]}", null,
+        PopFlat<MoveShopTable, MoveShopIndex>(GameFile.MoveShop, "Move Shop Editor", z => z.Table, (z, _) => $"{names[(int)z.MoveID]}", null,
             x => x.AddEntry(), x => x.RemoveEntry);
     }
 

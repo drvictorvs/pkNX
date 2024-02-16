@@ -1,7 +1,7 @@
 using pkNX.Structures;
 using pkNX.Structures.FlatBuffers.Arceus;
-using Learnset = pkNX.Structures.FlatBuffers.Arceus.Learnset;
 using EvolutionSet = pkNX.Structures.FlatBuffers.Arceus.EvolutionSet;
+using Learnset = pkNX.Structures.FlatBuffers.Arceus.Learnset;
 
 namespace pkNX.Game;
 
@@ -19,6 +19,7 @@ public class PokeEditor8a : IDataEditor
     public TableCache<PokeResourceTable, PokeModelConfig> PokeResourceTable { get; init; } = null!;
     public TableCache<EncounterMultiplierArchive, EncounterMultiplier> EncounterRateTable { get; init; } = null!;
     public TableCache<PokeCaptureCollisionArchive, PokeCaptureCollision> CaptureCollisionTable { get; init; } = null!;
+    public TableCache<MoveShopTable, MoveShopIndex> MoveShopData { get; init; } = null!;
 
     public void CancelEdits() { }
 

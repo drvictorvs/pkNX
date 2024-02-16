@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using pkNX.Game;
@@ -7,7 +8,7 @@ using pkNX.Structures;
 
 namespace pkNX.WinForms;
 
-public sealed partial class GenericEditor<T> : Form where T : class
+public partial class GenericEditor<T> : Form where T : class
 {
     private string[] Names = [];
     private DataCache<T> Cache;
@@ -25,7 +26,7 @@ public sealed partial class GenericEditor<T> : Form where T : class
         : this(_ => Cache, (_, i) => names[i], title, _ => randomizeCallback?.Invoke(), addEntryCallback, removeEntryCallback, canSave)
     { }
 
-    public GenericEditor(Func<GenericEditor<T>, DataCache<T>> loadCache, Func<T, int, string> nameSelector, string title, Action<IEnumerable<T>>? randomizeCallback = null, Action? addEntryCallback = null, Action<int>? removeEntryCallback = null, bool canSave = true)
+    public GenericEditor(Func<GenericEditor<T>, DataCache<T>> loadCache, Func<T, int, string> nameSelector, string title, Action<IEnumerable<T>>? randomizeCallback = null, Action? addEntryCallback = null, Action<int>? removeEntryCallback = null, bool canSave = true, string key = null, IFormatProvider format = null)
     {
         InitializeComponent();
         Text = title;
@@ -54,17 +55,22 @@ public sealed partial class GenericEditor<T> : Form where T : class
             B_AddEntry.Visible = true;
             B_AddEntry.Click += (_, __) =>
             {
-                addEntryCallback();
-                Modified = true;
+                DialogResult confirmResult = MessageBox.Show($"Are you sure you want to add an entry?", "Confirm Add", MessageBoxButtons.YesNo);
 
-                // Reload editor
-                Cache = loadCache(this);
-                Names = GetNames(nameSelector);
-                
-                CB_EntryName.Items.Clear();
-                CB_EntryName.Items.AddRange(Names);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    addEntryCallback();
+                    Modified = true;
 
-                System.Media.SystemSounds.Asterisk.Play();
+                    // Reload editor
+                    Cache = loadCache(this);
+                    Names = GetNames(nameSelector);
+                    
+                    CB_EntryName.Items.Clear();
+                    CB_EntryName.Items.AddRange(Names);
+
+                    System.Media.SystemSounds.Asterisk.Play();
+                }
             };
         }
         if (removeEntryCallback != null)
@@ -72,24 +78,30 @@ public sealed partial class GenericEditor<T> : Form where T : class
             B_RemoveEntry.Visible = true;
             B_RemoveEntry.Click += (_, __) =>
             {
-                DialogResult confirmResult = MessageBox.Show($"Are you sure you want to remove entry {CB_EntryName.SelectedIndex}?", "Confirm Delete", MessageBoxButtons.YesNo);
+                if(CB_EntryName.SelectedIndex > -1){
+                    DialogResult confirmResult = MessageBox.Show($"Are you sure you want to remove entry {CB_EntryName.SelectedIndex}?", "Confirm Delete", MessageBoxButtons.YesNo);
 
-                if (confirmResult == DialogResult.Yes)
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        removeEntryCallback(CB_EntryName.SelectedIndex);
+                        Modified = true;
+
+                        Cache = loadCache(this);
+                        Names = GetNames(nameSelector);
+
+                        CB_EntryName.Items.Clear();
+                        CB_EntryName.Items.AddRange(Names);
+
+                        System.Media.SystemSounds.Asterisk.Play(); 
+                    }
+                } 
+                else 
                 {
-                    removeEntryCallback(CB_EntryName.SelectedIndex);
-                    Modified = true;
-
-                    Cache = loadCache(this);
-                    Names = GetNames(nameSelector);
-
-                    CB_EntryName.Items.Clear();
-                    CB_EntryName.SelectedIndex--;
-                    CB_EntryName.Items.AddRange(Names);
-
-                    System.Media.SystemSounds.Asterisk.Play();
+                    MessageBox.Show($"Please select a valid entry.", "Cannot Delete", MessageBoxButtons.OKCancel);
                 }
             };
         }
+    
     }
 
     private void CB_EntryName_SelectedIndexChanged(object sender, EventArgs e)

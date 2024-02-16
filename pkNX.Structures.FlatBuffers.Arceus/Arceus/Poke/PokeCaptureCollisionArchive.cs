@@ -78,7 +78,6 @@ public partial class PokeCaptureCollisionArchive
         Table = Table.OrderBy(x => x.Species)
             .ThenBy(x => x.Form)
             .ToArray();
-        var entry = Table[entryIndex];
-        Table.Remove(entry);
+        Table.RemoveAt(entryIndex);
     }
 }

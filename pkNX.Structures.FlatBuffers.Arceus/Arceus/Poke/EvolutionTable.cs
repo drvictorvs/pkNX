@@ -11,11 +11,12 @@ namespace pkNX.Structures.FlatBuffers.Arceus;
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class EvolutionTable {
+    
+
     public EvolutionSet AddEntry()
     {
         var entry = new EvolutionSet();
-
-        Table = Table.Append(entry).ToList();
+        Table.Add(entry);
         return entry;
     }
 
@@ -32,12 +33,50 @@ public partial class EvolutionTable {
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class EvolutionEntry {
-    public override string ToString() => $"{Method} - {Argument} - {Species}-{Form} - {Level}";
+    public override string ToString() => $"{Method} - {Argument} - {Species}{(Form == 0 ? "" : $"-{Form}")} - {Level}";
 }
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class EvolutionSet
 {
+    public EvolutionEntry? Entry01
+    {
+        get { 
+            if (Table!.Count != 1)
+                throw new ArgumentException($"Invalid {nameof(Table)}"); 
+            if (Table[0] is not null)
+                return Table[0];
+            else
+                throw new ArgumentException($"Invalid {nameof(Table)}");
+        }
+        set { 
+            if (Table!.Count != 1) 
+                throw new ArgumentException($"Invalid {nameof(Table)}"); 
+            if (Table[0] is EvolutionEntry)
+                Table[0] = value; 
+            }
+    }
+
+    public EvolutionEntry? Entry02
+    {
+        get
+        {
+            if (Table!.Count != 1)
+                throw new ArgumentException($"Invalid {nameof(Table)}");
+            if (Table[0] is not null)
+                return Table[1];
+            else
+                throw new ArgumentException($"Invalid {nameof(Table)}");
+        }
+        set
+        {
+            if (Table!.Count != 1)
+                throw new ArgumentException($"Invalid {nameof(Table)}");
+            if (Table[1] is EvolutionEntry)
+                Table[1] = value;
+        }
+    }
+
     public byte[] Write()
     {
         if (Table is null || Table.Count == 0)
@@ -68,4 +107,11 @@ public partial class EvolutionSet
             _ => evoMethod,
         };
     }
+}
+
+
+[TypeConverter(typeof(ExpandableObjectConverter))]
+public partial class EvolutionEntry01 : EvolutionEntry
+{
+
 }

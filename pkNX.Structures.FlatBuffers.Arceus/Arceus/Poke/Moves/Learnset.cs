@@ -27,7 +27,7 @@ public partial class Learnset {
     public void RemoveEntry(int entryIndex)
     {
         var entry = Table[entryIndex];
-        Table.Remove(entry);
+        Table.RemoveAt(entryIndex);
     }
  }
 

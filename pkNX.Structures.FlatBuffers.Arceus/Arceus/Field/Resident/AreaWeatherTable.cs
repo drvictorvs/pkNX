@@ -11,10 +11,20 @@ using System.ComponentModel;
 namespace pkNX.Structures.FlatBuffers.Arceus;
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
-public partial class AreaWeatherTable { }
+public partial class AreaWeatherTable {
+    // lazy init
+    
+}
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class AreaWeather
 {
+
+    public static string GetTableName(ulong tableId)
+    {
+        return $"0x{tableId:X16}";
+    }
+
+    public string HashHex => GetTableName(Hash);
     public int WeightTotal => WeightSunny + WeightCloudy + WeightRain + WeightSnow + WeightDrought + WeightFog + WeightRainstorm + WeightSnowstorm;
 }

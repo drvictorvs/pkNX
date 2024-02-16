@@ -11,6 +11,7 @@ public partial class EncounterTableEditor8a : UserControl
     public IList<EncounterTable> Tables = Array.Empty<EncounterTable>();
 
     public EncounterTableEditor8a() => InitializeComponent();
+    private static string[] BadAreas => ["test", "processing"];
 
     public void LoadTable(IList<EncounterTable> table, string path)
     {
@@ -24,7 +25,7 @@ public partial class EncounterTableEditor8a : UserControl
         Visible = true;
         L_ConfigName.Text = path;
 
-        var items = table.Select(z => new ComboItem<EncounterTable>(z.TableName.Replace("\"", ""), z)).ToArray();
+        var items = table.Select(z => new ComboItem<EncounterTable>(z.ToString().Replace("\"", ""), z)).ToArray();
         CB_Encounters.DisplayMember = nameof(ComboItem<EncounterTable>.Text);
         CB_Encounters.ValueMember = nameof(ComboItem<EncounterTable>.Value);
         CB_Encounters.DataSource = new BindingSource(items, null);

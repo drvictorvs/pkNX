@@ -27,6 +27,7 @@ public partial class AreaEditor8a : Form
     private ResidentArea Area;
     private int AreaIndex;
     private readonly bool Loading;
+    private static string[] BadAreas => ["test", "processing"];
 
     public AreaEditor8a(GameManagerPLA rom)
     {
@@ -56,35 +57,7 @@ public partial class AreaEditor8a : Form
     {
         var index = Array.IndexOf(AreaNames, name);
         var area = new ResidentArea(Resident, Settings.Find(name), Settings);
-        try {
-            area.LoadInfo();
-        } catch (Exception ex) {
-            switch(ex.Message) {
-                case "Encounters":
-                    Edit_EncounterSettings.Visible = false;
-                    Edit_EncounterSlots.Visible = false;
-                    break;
-                case "Locations":
-                    break;
-                case "Spawners":
-                    Edit_RegularSpawners.Visible = false;
-                    break;
-                case "Wormholes":
-                    Edit_WormholeSpawners.Visible = false;
-                    break;
-                case "LandItems":
-                    Edit_LandmarkSpawns.Visible = false;
-                    break;
-                case "LandMarks":
-                    break;
-                case "Unown":
-                    break;
-                case "Mikaruge":
-                    break;
-                case "SearchItem":
-                    break;
-            }
-        }
+        area.LoadInfo();
         return (index, area);
     }
 
@@ -107,12 +80,10 @@ public partial class AreaEditor8a : Form
 
     private void B_AllowRiding_Click(object sender, EventArgs e)
     {
-        foreach (string AreaName in AreaNames.Where(z => !z.Contains("test")).ToArray())
+        foreach (string AreaName in AreaNames.Where(z => BadAreas.Any(z.Contains)).ToArray())
         {
             SaveArea();
             (AreaIndex, Area) = LoadAreaByName(AreaName);
-            if (Area.AreaName.Contains("test"))
-                continue;
             LoadArea();
             Area.Settings.CanRide = true;
         }
@@ -129,20 +100,20 @@ public partial class AreaEditor8a : Form
             FormBorderStyle = FormBorderStyle.FixedDialog,
             StartPosition = FormStartPosition.CenterScreen
         };
-        Label label = new Label
+        Label label = new()
         {
             Text = "Property name:",
             Left = 10,
             Top = 10,
             Width = 100
         };
-        TextBox textBox = new TextBox
+        TextBox textBox = new()
         {
             Left = 120,
             Top = 10,
             Width = 250
         };
-        Button buttonOk = new Button
+        Button buttonOk = new()
         {
             Text = "OK",
             Left = 200,
@@ -151,7 +122,7 @@ public partial class AreaEditor8a : Form
             Height = 30,
             DialogResult = DialogResult.OK
         };
-        Button buttonCancel = new Button
+        Button buttonCancel = new()
         {
             Text = "Cancel",
             Left = 290,
@@ -253,39 +224,41 @@ public partial class AreaEditor8a : Form
 
     private void LoadArea()
     {
-        Debug.WriteLine($"Loading Area {AreaIndex}");
-        PG_AreaSettings.SelectedObject = Area.Settings;
-        if (Resident.GetIndexFull(Area.Settings.Encounters) != -1)
-        {
-            Edit_EncounterSettings.LoadTable(Area.Encounters.Table, Area.Settings.Encounters);
-            Edit_EncounterSlots.LoadTable(Area.Encounters.Table, Area.Settings.Encounters, ROM);
-        }
-        else
-        {
+        Debug.WriteLine($"Loading Area {Area.AreaName} [#{AreaIndex}]");
+        if (Area.Settings is not null)
+            PG_AreaSettings.SelectedObject = Area.Settings;
+        if (Area.Encounters is null) {
+
             Edit_EncounterSettings.Visible = false;
             Edit_EncounterSlots.Visible = false;
         }
+        else {
 
-        if (Resident.GetIndexFull(Area.Settings.Spawners) != -1)
-            Edit_RegularSpawners.LoadTable(Area.Spawners.Table, Area.Settings.Spawners);
-        else
+            Edit_EncounterSettings.LoadTable(Area.Encounters.Table, Area.Settings.Encounters);
+            Edit_EncounterSlots.LoadTable(Area.Encounters.Table, Area.Settings.Encounters, ROM);
+        }
+
+        if (Area.Spawners is null)
             Edit_RegularSpawners.Visible = false;
+        else
+            Edit_RegularSpawners.LoadTable(Area.Spawners.Table, Area.Settings.Spawners);
 
-        if (Resident.GetIndexFull(Area.Settings.WormholeSpawners) != -1)
-            Edit_WormholeSpawners.LoadTable(Area.Wormholes.Table, Area.Settings.WormholeSpawners);
-        else
+        if (Area.Wormholes is null)
             Edit_WormholeSpawners.Visible = false;
-            
-        if (Resident.GetIndexFull(Area.Settings.LandmarkItemSpawns) != -1)
-            Edit_LandmarkSpawns.LoadTable(Area.LandItems.Table, Area.Settings.LandmarkItemSpawns);
         else
+            Edit_WormholeSpawners.LoadTable(Area.Wormholes.Table, Area.Settings.WormholeSpawners);
+            
+        if (Area.LandItems is null)
             Edit_LandmarkSpawns.Visible = false;
+        else
+            Edit_LandmarkSpawns.LoadTable(Area.LandItems.Table, Area.Settings.LandmarkItemSpawns);
     }
 
     private void SaveArea()
     {
-        Debug.WriteLine($"Saving Area {AreaIndex}");
-        Area.SaveInfo(Area.AreaName);
+        if(!BadAreas.Any(Area.AreaName.Contains)){
+            Debug.WriteLine($"Saving Area {Area.AreaName}");
+            Area.SaveInfo(Area.AreaName);}
     }
 
     private void B_Save_Click(object sender, EventArgs e)

@@ -31,10 +31,9 @@ public partial class PokeBodyParticleArchive {
     }
     public void RemoveEntry(int entryIndex)
     {
-        var entry = Table[entryIndex];
-        Table.Remove(entry);
+        Table.RemoveAt(entryIndex);
     }
- }
+}
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class PokeBodyParticle { }

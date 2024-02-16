@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using FlatSharp.Attributes;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ClassNeverInstantiated.Global
@@ -9,7 +10,6 @@ using System.ComponentModel;
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
 namespace pkNX.Structures.FlatBuffers.Arceus;
-
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public partial class MoveShopTable {
     public MoveShopIndex AddEntry()
@@ -21,8 +21,7 @@ public partial class MoveShopTable {
     }
     public void RemoveEntry(int entryIndex)
     {
-        var entry = Table[entryIndex];
-        Table.Remove(entry);
+        Table.RemoveAt(entryIndex);
     }
 }
 

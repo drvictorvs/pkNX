@@ -106,7 +106,7 @@ public partial class PokeDataUI8a : Form
             CLB_TM.Items.Add($"TR{i - 100:00} {movelist[TMs[i]]}");
         for (int i = 0; i < Legal.TypeTutor8.Length; i++)
             CLB_TypeTutor.Items.Add(movelist[Legal.TypeTutor8[i]]);*/
-        var moves = moveShop.Table.Select(table => nameof(table.Move)).ToArray();
+        var moves = moveShop.Table.Select(table => nameof(table.MoveID)).ToArray();
         CLB_SpecialTutor.Items.AddRange(moves);
 
         var entries = entryNames.Select((z, i) => $"{z} - {i:0000}");

@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using FlatSharp.Attributes;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ClassNeverInstantiated.Global
@@ -37,6 +36,9 @@ public partial class EncounterTable
         var result = new Dictionary<ulong, string>
         {
             [0xCBF29CE484222645] = "",
+            [0x441899228E6BE647] = "Cyndaquil",
+            [0x44189A228E6BE7FA] = "Oshawott",
+            [0x44189B228E6BE9AD] = "Rowlet",
         };
 
         var prefixes = new[] { "eve", "fly", "gmk", "lnd", "mas", "oyb", "swm", "whl" };
@@ -96,7 +98,7 @@ public partial class EncounterTable
 
     public string TableName => GetTableName(TableID);
 
-    public override string ToString() => $"{TableName} (Lv. {MinLevel}-{MaxLevel})";
+    public override string ToString() => $"{TableName} (Lv. {(MinLevel == MaxLevel ? MinLevel : $"{MinLevel}-{MaxLevel}")})";
 }
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
