@@ -1,11 +1,11 @@
-using pkNX.Containers.VFS;
-using pkNX.Structures;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using pkNX.Containers.VFS;
+using pkNX.Structures;
 
 namespace pkNX.Game;
 
@@ -66,34 +66,58 @@ public static class GamePath
     private static FileSystemPath GetDirectoryPath_PLA(GameFile file) => file switch
     {
         GameFile.GameText => throw new ArgumentException("Please shift language enum before calling this method."),
-        GameFile.GameText0 => "/romfs/bin/message/JPN/common/",
-        GameFile.GameText1 => "/romfs/bin/message/JPN_KANJI/common/",
-        GameFile.GameText2 => "/romfs/bin/message/English/common/",
-        GameFile.GameText3 => "/romfs/bin/message/French/common/",
-        GameFile.GameText4 => "/romfs/bin/message/Italian/common/",
-        GameFile.GameText5 => "/romfs/bin/message/German/common/",
-        GameFile.GameText6 => "/romfs/bin/message/Spanish/common/",
-        GameFile.GameText7 => "/romfs/bin/message/Korean/common/",
-        GameFile.GameText8 => "/romfs/bin/message/Simp_Chinese/common/",
-        GameFile.GameText9 => "/romfs/bin/message/Trad_Chinese/common/",
+        GameFile.GameText0 => "/dump/message/dat/JPN/common/",
+        GameFile.GameText1 => "/dump/message/dat/JPN_KANJI/common/",
+        GameFile.GameText2 => "/dump/message/dat/English/common/",
+        GameFile.GameText3 => "/dump/message/dat/French/common/",
+        GameFile.GameText4 => "/dump/message/dat/Italian/common/",
+        GameFile.GameText5 => "/dump/message/dat/German/common/",
+        GameFile.GameText6 => "/dump/message/dat/Spanish/common/",
+        GameFile.GameText7 => "/dump/message/dat/Korean/common/",
+        GameFile.GameText8 => "/dump/message/dat/Simp_Chinese/common/",
+        GameFile.GameText9 => "/dump/message/dat/Trad_Chinese/common/",
 
         GameFile.StoryText => throw new ArgumentException("Please shift language enum before calling this method."),
-        GameFile.StoryText0 => "/romfs/bin/message/JPN/script/",
-        GameFile.StoryText1 => "/romfs/bin/message/JPN_KANJI/script/",
-        GameFile.StoryText2 => "/romfs/bin/message/English/script/",
-        GameFile.StoryText3 => "/romfs/bin/message/French/script/",
-        GameFile.StoryText4 => "/romfs/bin/message/Italian/script/",
-        GameFile.StoryText5 => "/romfs/bin/message/German/script/",
-        GameFile.StoryText6 => "/romfs/bin/message/Spanish/script/",
-        GameFile.StoryText7 => "/romfs/bin/message/Korean/script/",
-        GameFile.StoryText8 => "/romfs/bin/message/Simp_Chinese/script/",
-        GameFile.StoryText9 => "/romfs/bin/message/Trad_Chinese/script/",
+        GameFile.StoryText0 => "/dump/message/dat/JPN/script/",
+        GameFile.StoryText1 => "/dump/message/dat/JPN_KANJI/script/",
+        GameFile.StoryText2 => "/dump/message/dat/English/script/",
+        GameFile.StoryText3 => "/dump/message/dat/French/script/",
+        GameFile.StoryText4 => "/dump/message/dat/Italian/script/",
+        GameFile.StoryText5 => "/dump/message/dat/German/script/",
+        GameFile.StoryText6 => "/dump/message/dat/Spanish/script/",
+        GameFile.StoryText7 => "/dump/message/dat/Korean/script/",
+        GameFile.StoryText8 => "/dump/message/dat/Simp_Chinese/script/",
+        GameFile.StoryText9 => "/dump/message/dat/Trad_Chinese/script/",
 
         _ => throw new NotSupportedException($"The selected file ({file}) is currently not mapped")
     };
 
-    private static FileSystemPath GetDirectoryPath_SV(GameFile file)
+    public static FileSystemPath GetDirectoryPath_SV(GameFile file) => file switch
     {
-        throw new NotImplementedException();
-    }
+        GameFile.GameText => throw new ArgumentException("Please shift language enum before calling this method."),
+        GameFile.GameText0 => "/dump/message/dat/JPN/common/",
+        GameFile.GameText1 => "/dump/message/dat/JPN_KANJI/common/",
+        GameFile.GameText2 => "/dump/message/dat/English/common/",
+        GameFile.GameText3 => "/dump/message/dat/French/common/",
+        GameFile.GameText4 => "/dump/message/dat/Italian/common/",
+        GameFile.GameText5 => "/dump/message/dat/German/common/",
+        GameFile.GameText6 => "/dump/message/dat/Spanish/common/",
+        GameFile.GameText7 => "/dump/message/dat/Korean/common/",
+        GameFile.GameText8 => "/dump/message/dat/Simp_Chinese/common/",
+        GameFile.GameText9 => "/dump/message/dat/Trad_Chinese/common/",
+
+        GameFile.StoryText => throw new ArgumentException("Please shift language enum before calling this method."),
+        GameFile.StoryText0 => "/dump/message/dat/JPN/script/",
+        GameFile.StoryText1 => "/dump/message/dat/JPN_KANJI/script/",
+        GameFile.StoryText2 => "/dump/message/dat/English/script/",
+        GameFile.StoryText3 => "/dump/message/dat/French/script/",
+        GameFile.StoryText4 => "/dump/message/dat/Italian/script/",
+        GameFile.StoryText5 => "/dump/message/dat/German/script/",
+        GameFile.StoryText6 => "/dump/message/dat/Spanish/script/",
+        GameFile.StoryText7 => "/dump/message/dat/Korean/script/",
+        GameFile.StoryText8 => "/dump/message/dat/Simp_Chinese/script/",
+        GameFile.StoryText9 => "/dump/message/dat/Trad_Chinese/script/",
+
+        _ => throw new NotSupportedException($"The selected file ({file}) is currently not mapped")
+    };
 }

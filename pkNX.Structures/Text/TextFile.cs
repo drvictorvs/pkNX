@@ -1,9 +1,9 @@
-using pkNX.Containers;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using pkNX.Containers;
 
 namespace pkNX.Structures;
 
@@ -336,7 +336,7 @@ public class TextFile
         return s.ToString();
     }
 
-    private static IEnumerable<ushort> GetEscapeValues(char esc)
+    private static List<ushort> GetEscapeValues(char esc)
     {
         var vals = new List<ushort>();
         switch (esc)
@@ -351,7 +351,7 @@ public class TextFile
         }
     }
 
-    private IEnumerable<ushort> GetVariableValues(ReadOnlySpan<char> variable)
+    private List<ushort> GetVariableValues(ReadOnlySpan<char> variable)
     {
         var spaceIndex = variable.IndexOf(' ');
         if (spaceIndex == -1)
@@ -381,7 +381,7 @@ public class TextFile
         return vals;
     }
 
-    private IEnumerable<ushort> GetRubyValues(string ruby)
+    private List<ushort> GetRubyValues(string ruby)
     {
         string[] split = ruby.Split('|');
         if (split.Length < 2)
@@ -407,17 +407,17 @@ public class TextFile
         return vals;
     }
 
-    private IEnumerable<ushort> GetVariableParameters(ReadOnlySpan<char> text)
+    private List<ushort> GetVariableParameters(ReadOnlySpan<char> text)
     {
         var vals = new List<ushort>();
         int bracket = text.IndexOf('(');
-        bool noArgs = bracket < 0;
-        var variable = noArgs ? text : text[..bracket];
+        bool hasArgs = bracket > 0;
+        var variable = hasArgs ? text[..bracket] : text;
         ushort varVal = Config.GetVariableNumber(variable.ToString());
 
-        if (!noArgs)
+        if (hasArgs)
         {
-            string[] args = text[(bracket + 1)..(text.Length - bracket - 2)].ToString().Split(',');
+            string[] args = text[(bracket + 1)..(text.IndexOf(')'))].ToString().Split(',');
             vals.Add((ushort)(1 + args.Length));
             vals.Add(varVal);
             vals.AddRange(args.Select(t => Convert.ToUInt16(t, 16)));

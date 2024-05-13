@@ -1,12 +1,12 @@
-using pkNX.Containers;
-using pkNX.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using static pkNX.Structures.GameVersion;
-using static pkNX.Game.GameFile;
+using pkNX.Containers;
+using pkNX.Structures;
 using static pkNX.Containers.ContainerType;
+using static pkNX.Game.GameFile;
+using static pkNX.Structures.GameVersion;
 
 namespace pkNX.Game;
 
@@ -404,29 +404,29 @@ public class GameFileMapping
         new(DataTrpfs, SingleFile, "arc", "data.trpfs"),
         // new(TrainerSpecData, "bin", "trainer"),
         // 
-        // new(GameText0,  0, "bin", "message", "JPN", "common"),
-        // new(GameText1,  1, "bin", "message", "JPN_KANJI", "common"),
-        // new(GameText2,  2, "bin", "message", "English", "common"),
-        // new(GameText3,  3, "bin", "message", "French", "common"),
-        // new(GameText4,  4, "bin", "message", "Italian", "common"),
-        // new(GameText5,  5, "bin", "message", "German", "common"),
-        // // 6 unused lang
-        // new(GameText6,  7, "bin", "message", "Spanish", "common"),
-        // new(GameText7,  8, "bin", "message", "Korean", "common"),
-        // new(GameText8,  9, "bin", "message", "Simp_Chinese", "common"),
-        // new(GameText9, 10, "bin", "message", "Trad_Chinese", "common"),
-        // 
-        // new(StoryText0, 0, "bin", "message", "JPN", "script"),
-        // new(StoryText1, 1, "bin", "message", "JPN_KANJI", "script"),
-        // new(StoryText2, 2, "bin", "message", "English", "script"),
-        // new(StoryText3, 3, "bin", "message", "French", "script"),
-        // new(StoryText4, 4, "bin", "message", "Italian", "script"),
-        // new(StoryText5, 5, "bin", "message", "German", "script"),
-        // // 6 unused lang
-        // new(StoryText6, 7, "bin", "message", "Spanish", "script"),
-        // new(StoryText7, 8, "bin", "message", "Korean", "script"),
-        // new(StoryText8, 9, "bin", "message", "Simp_Chinese", "script"),
-        // new(StoryText9, 10, "bin", "message", "Trad_Chinese", "script"),
+        new(GameText0,  0, "message", "dat", "JPN", "common"),
+        new(GameText1,  1, "message", "dat", "JPN_KANJI", "common"),
+        new(GameText2,  2, "message", "dat", "English", "common"),
+        new(GameText3,  3, "message", "dat", "French", "common"),
+        new(GameText4,  4, "message", "dat", "Italian", "common"),
+        new(GameText5,  5, "message", "dat", "German", "common"),
+        // 6 unused lang
+        new(GameText6,  7, "message", "dat", "Spanish", "common"),
+        new(GameText7,  8, "message", "dat", "Korean", "common"),
+        new(GameText8,  9, "message", "dat", "Simp_Chinese", "common"),
+        new(GameText9, 10, "message", "dat", "Trad_Chinese", "common"),
+        
+        new(StoryText0, 0, "message", "dat", "JPN", "script"),
+        new(StoryText1, 1, "message", "dat", "JPN_KANJI", "script"),
+        new(StoryText2, 2, "message", "dat", "English", "script"),
+        new(StoryText3, 3, "message", "dat", "French", "script"),
+        new(StoryText4, 4, "message", "dat", "Italian", "script"),
+        new(StoryText5, 5, "message", "dat", "German", "script"),
+        // 6 unused lang
+        new(StoryText6, 7, "message", "dat", "Spanish", "script"),
+        new(StoryText7, 8, "message", "dat", "Korean", "script"),
+        new(StoryText8, 9, "message", "dat", "Simp_Chinese", "script"),
+        new(StoryText9, 10, "message", "dat", "Trad_Chinese", "script"),
         // 
         // new(MoveStats                                                , "bin", "pml", "waza"),
         // new(ItemStats                      , SingleFile, "bin", "pml", "item", "item.dat"),

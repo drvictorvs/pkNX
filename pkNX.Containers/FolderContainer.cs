@@ -30,8 +30,13 @@ public class FolderContainer : IFileContainer
             return; // already initialized
         if (FilePath is null)
             throw new ArgumentException("No path specified to initialize from.");
-        IEnumerable<string> files = Directory.GetFiles(FilePath, "*", SearchOption.AllDirectories);
-        if (filter != null)
+        IEnumerable<string> files = [];
+        try {
+            files = Directory.GetFiles(FilePath, "*", SearchOption.AllDirectories);
+        } catch {
+            files = Directory.GetFiles(FilePath.Replace("romfs", "dump"), "*", SearchOption.AllDirectories);
+        }
+        if (filter is not null)
             files = files.Where(filter);
         files = files.OrderBy(z => Path.GetFileName(z).Length); // alphabetical sorting doesn't play nice with 100 & 1000
 
