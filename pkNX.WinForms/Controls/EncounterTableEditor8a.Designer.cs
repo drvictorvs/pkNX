@@ -1,4 +1,4 @@
-﻿namespace pkNX.WinForms.Controls
+namespace pkNX.WinForms.Controls
 {
     partial class EncounterTableEditor8a
     {
@@ -140,7 +140,7 @@
             this.B_IncreaseLevels.Location = new System.Drawing.Point(490, 7);
             this.B_IncreaseLevels.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.B_IncreaseLevels.Name = "B_IncreaseLevels";
-            this.B_IncreaseLevels.Size = new System.Drawing.Size(182, 35);
+            this.B_IncreaseLevels.Size = new System.Drawing.Size(192, 35);
             this.B_IncreaseLevels.TabIndex = 12;
             this.B_IncreaseLevels.Text = "Increase Levels by 10%";
             this.TT_ButtonToolTip.SetToolTip(this.B_IncreaseLevels, "Increases the MinLevel and MaxLevel by 10% for all encounter tables within this location");

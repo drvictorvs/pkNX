@@ -54,9 +54,9 @@ public partial class PlacementSpawnerEditor8a : UserControl
     private void B_MaxSpawnCountRange_Click(object sender, EventArgs e)
     {
         const int count = 8;
-        foreach (var spawner in Spawners)
+        foreach (PlacementSpawner spawner in Spawners)
         {
-            spawner.MinSpawnCount = spawner.MaxSpawnCount = count;
+                spawner.MinSpawnCount = spawner.MaxSpawnCount = count;
         }
 
         WinFormsUtil.Alert($"Set all to have {count} entities spawned.");

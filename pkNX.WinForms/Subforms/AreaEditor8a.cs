@@ -80,7 +80,7 @@ public partial class AreaEditor8a : Form
 
     private void B_AllowRiding_Click(object sender, EventArgs e)
     {
-        foreach (string AreaName in AreaNames.Where(z => BadAreas.Any(z.Contains)).ToArray())
+        foreach (string AreaName in AreaNames.Where(z => !BadAreas.Any(z.Contains)).ToArray())
         {
             SaveArea();
             (AreaIndex, Area) = LoadAreaByName(AreaName);
@@ -92,69 +92,88 @@ public partial class AreaEditor8a : Form
 
     private void B_ChangeProperty_Click(object sender, EventArgs e)
     {
-        Form dialog = new()
+        Form Dialog = new()
         {
             Text = "Enter the property name you want to change:",
             Width = 400,
-            Height = 150,
+            Height = 200,
             FormBorderStyle = FormBorderStyle.FixedDialog,
             StartPosition = FormStartPosition.CenterScreen
         };
-        Label label = new()
+        Label L_PropName = new()
         {
             Text = "Property name:",
             Left = 10,
             Top = 10,
             Width = 100
         };
-        TextBox textBox = new()
+        Label L_PropValue = new()
+        {
+            Text = "Property value:",
+            Left = 10,
+            Top = 50,
+            Width = 100
+        };
+        TextBox TB_PropName = new()
         {
             Left = 120,
             Top = 10,
             Width = 250
         };
-        Button buttonOk = new()
+        TextBox TB_PropValue = new()
+        {
+            Left = 120,
+            Top = 50,
+            Width = 250
+        };
+        Button ButtonOk = new()
         {
             Text = "OK",
             Left = 200,
-            Top = 50,
+            Top = 100,
             Width = 80,
             Height = 30,
             DialogResult = DialogResult.OK
         };
-        Button buttonCancel = new()
+        Button ButtonCancel = new()
         {
             Text = "Cancel",
             Left = 290,
-            Top = 50,
+            Top = 100,
             Width = 80,
             Height = 30,
             DialogResult = DialogResult.Cancel
         };
-        dialog.Controls.Add(label);
-        dialog.Controls.Add(textBox);
-        dialog.Controls.Add(buttonOk);
-        dialog.Controls.Add(buttonCancel);
-        dialog.AcceptButton = buttonOk;
+        Dialog.Controls.Add(L_PropName);
+        Dialog.Controls.Add(TB_PropName);
+        Dialog.Controls.Add(L_PropValue);
+        Dialog.Controls.Add(TB_PropValue);
+        Dialog.Controls.Add(ButtonOk);
+        Dialog.Controls.Add(ButtonCancel);
+        Dialog.AcceptButton = ButtonOk;
         bool failure = true;
-        while (failure){
-            var result = dialog.ShowDialog();
+        while (failure) {
+            var result = Dialog.ShowDialog();
             if(result == DialogResult.Cancel)
                 break;
-            string propertyName = textBox.Text;
+            string propName = TB_PropName.Text;
+            string propValue = TB_PropValue.Text;
 
-            PropertyInfo? propInfo = typeof(AreaSettings).GetProperty(propertyName);
-                if (propInfo != null && propInfo.PropertyType == typeof(bool))
+            PropertyInfo? propInfo = typeof(AreaSettings).GetProperty(propName);
+            var propType = propInfo!.PropertyType;
+            object? newValue;
+            try { newValue = Convert.ChangeType(propValue, propType); } catch { WinFormsUtil.Alert($"{propValue} is not a valid value for {propName}."); continue; }
+                if (propInfo != null && newValue != null)
                 {
-                    foreach (string AreaName in AreaNames.Where(z => !z.Contains("test")).ToArray()){
+                    foreach (string AreaName in AreaNames.Where(z => !BadAreas.Any(z.Contains)).ToArray()){
                         SaveArea();
                         (AreaIndex, Area) = LoadAreaByName(AreaName);
                         LoadArea();
-                        propInfo.SetValue(Area.Settings, true);
+                        propInfo.SetValue(Area.Settings, newValue);
                     }
                     failure = false;
                 } else {
-                    dialog.Text = $"Property '{propertyName}' non-existent or not bool. Try again or cancel the operation.";
+                    Dialog.Text = $"Property '{propName}' non-existent or the value input is not valid for its type. Try again or cancel the operation.";
                 }
         }
         System.Media.SystemSounds.Asterisk.Play();
@@ -228,12 +247,10 @@ public partial class AreaEditor8a : Form
         if (Area.Settings is not null)
             PG_AreaSettings.SelectedObject = Area.Settings;
         if (Area.Encounters is null) {
-
             Edit_EncounterSettings.Visible = false;
             Edit_EncounterSlots.Visible = false;
         }
         else {
-
             Edit_EncounterSettings.LoadTable(Area.Encounters.Table, Area.Settings.Encounters);
             Edit_EncounterSlots.LoadTable(Area.Encounters.Table, Area.Settings.Encounters, ROM);
         }
